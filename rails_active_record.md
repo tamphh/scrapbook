@@ -1,4 +1,5 @@
 # Includes
+*participant* belongs to *comment_thread* which has one *last_comment*, polymorphic with *source_type, source_id*
 ```ruby
   def scope
     Participant
