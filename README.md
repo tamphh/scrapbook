@@ -2,7 +2,7 @@
 Web development note, mostly for Rails
 
 # Conditions passed with question mark interpolation
-```
+```ruby
 User.where("users.first_name = ? and users.last_name = ?", 'Oliver', 'Sykes')
 # SELECT "users".* FROM "users" WHERE (users.first_name = 'Oliver' and users.last_name = 'Sykes')
 # => [] # User::ActiveRecord_Relation 
@@ -12,7 +12,7 @@ User.joins(:lessons).where("users.first_name = ? and lessons.title LIKE ?", 'Tom
 # => [] # User::ActiveRecord_Relation
 ```
 Remember **NEVER EVER** to do direct string interpolation with “#{}”!
-```
+```ruby
 ## DON'T !!!
 name = "I'm going to hack you;"
 User.where("users.first_name = '#{name}'") # NEVER DO THIS !!!
@@ -21,7 +21,7 @@ User.where("users.first_name = '#{name}'") # NEVER DO THIS !!!
 
 # Merge different model scopes
 Let say User can be accesed via a public uid
-```
+```ruby
 class User < ActiveRecord::Base
   has_many :articles
   scope :for_public_uid, ->(uids) { where(id: uids) }
@@ -37,7 +37,7 @@ User.for_public_uid(['abcd1234', 'xyzff235'])
 => #<ActiveRecord::Relation []>
 ```
 Merge can be implemented on any scope returning “ActiveRecord::Relation”:
-```
+```ruby
 class DocumentVersion
   scope :order_by_latest, ->{ order("document_versions.id DESC") } 
 end
@@ -50,7 +50,7 @@ Document.order_by_latest
 ```
 # Bottom point of Query Interface is that you don’t call any other relation after it!
 So no:
-```
+```ruby
 # DONT
 class MyController < ApplicationController
   # ...
@@ -65,7 +65,7 @@ class MyController < ApplicationController
 end
 ```
 If you need “similar” example with just one altertaion then just define new Query Interface method and use that one and test it separatly:
-```
+```ruby
 module AdminQueryInterface 
   # ...
   def comments_including_for_approval_paginated(organization:, limit: )
