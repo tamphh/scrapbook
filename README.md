@@ -36,7 +36,7 @@ User.for_public_uid(['abcd1234', 'xyzff235'])
 # SELECT "users".* FROM "users" WHERE "users"."public_uid" IN ('abcd1234', 'xyzff235')
 => #<ActiveRecord::Relation []>
 ```
-Merge can be implemented on any scope returnig “ActiveRecord::Relation”:
+Merge can be implemented on any scope returning “ActiveRecord::Relation”:
 ```
 class DocumentVersion
   scope :order_by_latest, ->{ order("document_versions.id DESC") } 
@@ -47,6 +47,31 @@ class Document
 end
 
 Document.order_by_latest
+```
+# Bottom point of Query Interface is that you don’t call any other relation after it!
+So no:
+```
+# DONT
+class MyController < ApplicationController
+  # ...
+  def index
+    # ...
+    c = AdminQueryInterface
+      .comments_including_for_approval(organization: organization)
+      .limit(10) # DONT!
+    # ...
+  end
+  # ...
+end
+```
+If you need “similar” example with just one altertaion then just define new Query Interface method and use that one and test it separatly:
+```
+module AdminQueryInterface 
+  # ...
+  def comments_including_for_approval_paginated(organization:, limit: )
+    comments_including_for_approval(organization: organization).limit(limit)
+  end
+end
 ```
 
 
