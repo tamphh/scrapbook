@@ -42,6 +42,7 @@ class Document
 end
 # it can get kinda complex :)
 ```
+
 # Find duplicate email records with Rails
 Rails + SQL do the heavy lifting
 ```ruby
@@ -60,6 +61,7 @@ puts email_counts.map{|k,v| k}.uniq
 # all together
 User.pluck(:email).each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }.select { |k,v| v >1 }.map{|k,v| k}.uniq
 ```
+
 # Aggregations
 **Get receiver who has most cheers.**
 
@@ -69,6 +71,30 @@ receiver_id, cheers_count = cheers.group(:receiver_id).count.max_by { |(_receive
 ```
 Source
 - http://www.rubycuts.com/developer-resources/ruby-enumerable-module/max_by-method/
+
+# Validations
+```ruby
+:name, presence: true, uniqueness: { case_sensitive: true }
+
+validates :in_stock,
+  inclusion: { in: [true, false] },
+  allow_nil: true  # there is also allow_blank: true
+
+validates :in_stock,
+  exclusion: { in: [nil] },
+  on: :create  # on create means only when creating resource
+
+validates :email, format: { with: /\ A([ ^@\ s] +)@((?:[-a-z0-9] +\.) +[a-z]{ 2,})\ Z/ i }
+
+validates_length_of :essay,
+  minimum: 100,
+  too_short: 'Your essay must be at least 100 words.',
+  tokenizer: ->(str) { str.scan(/\w+/) } # Specifies how to split up the
+             # attribute string. (e.g. tokenizer: ->(str) { str.scan(/\w+/) } to count
+             # words). Defaults to ->(value) { value.split(//) }
+             # which counts individual characters.
+```
+
 # Performance related
 **Another poor performance statement using ActiveRecord is:**
 ```ruby
