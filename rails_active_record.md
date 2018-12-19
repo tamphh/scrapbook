@@ -60,7 +60,15 @@ puts email_counts.map{|k,v| k}.uniq
 # all together
 User.pluck(:email).each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }.select { |k,v| v >1 }.map{|k,v| k}.uniq
 ```
+# Aggregations
+**Get receiver who has most cheers.**
 
+Result: *receiver_id* paired with *cheers_count*
+```ruby
+receiver_id, cheers_count = cheers.group(:receiver_id).count.max_by { |(_receiver_id, total_cheer)| total_cheer }
+```
+Source
+- http://www.rubycuts.com/developer-resources/ruby-enumerable-module/max_by-method/
 # Performance related
 **Another poor performance statement using ActiveRecord is:**
 ```ruby
