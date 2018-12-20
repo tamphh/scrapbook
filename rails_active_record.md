@@ -94,7 +94,15 @@ validates_length_of :essay,
              # words). Defaults to ->(value) { value.split(//) }
              # which counts individual characters.
 ```
-
+# Order
+```ruby
+User.order(email: :desc)
+=> SELECT "users".* FROM "users" ORDER BY "users"."email" DESC
+```
+In relation after joining with other tables
+```ruby
+scope.order("comment_threads.last_commented_at DESC")
+```
 # Performance related
 **Another poor performance statement using ActiveRecord is:**
 ```ruby
