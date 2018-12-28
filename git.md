@@ -5,7 +5,7 @@ Step 1: Switch to your repository's directory
 
 ```bash
 cd /path/to/your/repo
-# only do this if needed
+# only do this if it's not initialized
 git init 
 ```
 
