@@ -5,8 +5,7 @@ Step 1: Switch to your repository's directory
 
 ```bash
 cd /path/to/your/repo
-# only do this if it's not initialized
-git init 
+git init # only do this if it's not initialized
 ```
 
 Step 2: Connect your existing repository to Bitbucket
