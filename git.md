@@ -1,4 +1,4 @@
-# Create new repository on Bitbucket
+# Connect new repository to Bitbucket
 Get your local Git repository on Bitbucket
 
 Step 1: Switch to your repository's directory
