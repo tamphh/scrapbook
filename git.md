@@ -40,3 +40,24 @@ git push origin -f
   ```bash
   git push origin -u new-name
   ```
+  
+# Tag commands
+**Check if pushed tag is on the git remote**
+  ```bash
+  git ls-remote --tags origin
+  ```
+
+**Create annotated tag**
+  ```bash
+  git tag -a code66_v3.8.4 -m "my message"
+  ```
+
+**Push tag 'tag_name'**
+  ```bash
+  git push origin tag_name
+  ```
+
+**Push all unpushed local tags**
+  ```bash
+  git push origin --tags
+  ```
