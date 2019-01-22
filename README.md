@@ -1,7 +1,12 @@
 # scrapbook
 Web development note, mostly for Rails
 
-# Conditions passed with question mark interpolation
+### JSON pretty print
+```ruby
+puts JSON.pretty_generate(my_object)
+```
+
+### Conditions passed with question mark interpolation
 ```ruby
 User.where("users.first_name = ? and users.last_name = ?", 'Oliver', 'Sykes')
 # SELECT "users".* FROM "users" WHERE (users.first_name = 'Oliver' and users.last_name = 'Sykes')
@@ -19,7 +24,7 @@ User.where("users.first_name = '#{name}'") # NEVER DO THIS !!!
 ```
 …this would open your App to [SQL injection Attack](http://guides.rubyonrails.org/security.html#sql-injection).
 
-# Merge different model scopes
+### Merge different model scopes
 Let say User can be accesed via a public uid
 ```ruby
 class User < ActiveRecord::Base
@@ -48,7 +53,7 @@ end
 
 Document.order_by_latest
 ```
-# Bottom point of Query Interface is that you don’t call any other relation after it!
+### Bottom point of Query Interface is that you don’t call any other relation after it!
 So no:
 ```ruby
 # DONT
