@@ -1,6 +1,12 @@
 # scrapbook
 Web development note, mostly for Rails
 
+### SELECT list is not in GROUP BY clause and contains nonaggregated column … incompatible with sql_mode=only_full_group_by
+```sql
+mysql -u root -p
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+```
+
 ### JSON pretty print
 ```ruby
 puts JSON.pretty_generate(my_object)
