@@ -98,7 +98,7 @@ end
 irb(main):001:0> describe(&Container.new.method(:m).to_proc)
 => "Calling lambda? on the block results in true."
 ```
-### If object is not a Proc, it first calls #to_proc on the object and then converts it into a block.
+### If object is not a Proc, it first calls ```#to_proc``` on the object and then converts it into a block.
 This is where the magic really happens because it makes passing objects to functions in the place of blocks very simple. The most common case of this is probably calling into ```Array#map``` with a symbol.
 ```
 irb(main):001:0> ["1", "2", "3"].map(&:to_i)
