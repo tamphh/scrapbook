@@ -136,4 +136,5 @@ irb(main):003:0> greetings.map(&FancyDisplay)
 ```
 Hopefully this post has clarified the binary and unary ampersand operator in Ruby. It’s a fun operator. In the binary form it can provide us with a shorthand way of doing bitwise AND and set intersection like operations. In the unary form it provides us with some powerful functionality for converting blocks and procs.
 
+**source**: https://ablogaboutcode.com/2012/01/04/the-ampersand-operator-in-ruby
 
