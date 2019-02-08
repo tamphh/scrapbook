@@ -60,15 +60,40 @@ FROM Products p
 INNER JOIN Manufacturers m ON m.code = p.Manufacturer;
 
 -- 1.12 Select the average price of each manufacturer's products, showing only the manufacturer's code.
-SELECT m.code Manufacturer_Code,
-       AVG(p.price) Average_Price
+SELECT Manufacturer,
+       avg(Price) Average_Price
+FROM Products
+GROUP BY Manufacturer;
+
+-- 1.13 Select the average price of each manufacturer's products, showing the manufacturer's name.
+SELECT m.Name Manufacturer_Name,
+       avg(p.Price) Average_Price
 FROM Products p
 INNER JOIN Manufacturers m ON m.code = p.Manufacturer
 GROUP BY m.code;
 
--- 1.13 Select the average price of each manufacturer's products, showing the manufacturer's name.
 -- 1.14 Select the names of manufacturer whose products have an average price larger than or equal to $150.
+SELECT m.Name Manufacturer_Name,
+       avg(p.Price) Average_Price
+FROM Products p
+INNER JOIN Manufacturers m ON m.code = p.Manufacturer
+GROUP BY m.code
+HAVING Average_Price >= 150;
+
 -- 1.15 Select the name and price of the cheapest product.
+-- #S1
+SELECT Name,
+       Price
+FROM Products
+ORDER BY Price ASC
+LIMIT 1;
+-- #S2
+SELECT name,
+       price
+FROM Products
+WHERE price =
+    (SELECT min(price)
+     FROM products);
 -- 1.16 Select the name of each manufacturer along with the name and price of its most expensive product.
 -- 1.17 Add a new product: Loudspeakers, $70, manufacturer 2.
 -- 1.18 Update the name of product 8 to "Laser Printer".
