@@ -1,11 +1,27 @@
 -- LINK : https://en.wikibooks.org/wiki/SQL_Exercises/Employee_management
 -- 2.1 Select the last name of all employees.
+select LastName from Employees;
+
 -- 2.2 Select the last name of all employees, without duplicates.
+select distinct LastName from Employees;
+
 -- 2.3 Select all the data of employees whose last name is "Smith".
+select * from Employees
+where LastName = 'Smith';
+
 -- 2.4 Select all the data of employees whose last name is "Smith" or "Doe".
+select * from Employees
+where LastName in ('Smith', 'Doe');
+
 -- 2.5 Select all the data of employees that work in department 14.
+select * from Employees where Department = 14;
+
 -- 2.6 Select all the data of employees that work in department 37 or department 77.
+select * from Employees where Department in (37, 77);
+
 -- 2.7 Select all the data of employees whose last name begins with an "S".
+select * from Employees where LastName like 'S%';
+
 -- 2.8 Select the sum of all the departments' budgets.
 -- 2.9 Select the number of employees in each department (you only need to show the department code and the number of employees).
 -- 2.10 Select all the data of employees, including each employee's department's data.
@@ -20,4 +36,3 @@
 -- 2.18 Reassign all employees from the Research department (code 77) to the IT department (code 14).
 -- 2.19 Delete from the table all employees in the IT department (code 14).
 -- 2.20 Delete from the table all employees who work in departments with a budget greater than or equal to $60,000.
--- 2.21 Delete from the table all employees.
