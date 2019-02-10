@@ -179,6 +179,7 @@ SET
   Name = 'Laser Printer' 
 WHERE 
   code = 8;
+  
 -- 1.19 Apply a 10% discount to all products.
 UPDATE 
   Products 
