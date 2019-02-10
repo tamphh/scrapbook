@@ -27,14 +27,21 @@ select SUM(Budget) from Departments;
 select Department, count(SSN)
 from Employees
 group by Department;
-
 -- 2.10 Select all the data of employees, including each employee's department's data.
 select *
 from Employees e
   inner join Departments d on d.code = e.Department;
 
 -- 2.11 Select the name and last name of each employee, along with the name and budget of the employee's department.
+select e.Name, e.LastName, d.Name, d.budget
+from Employees e
+  inner join Departments d on d.code = e.Department;
+
 -- 2.12 Select the name and last name of employees working for departments with a budget greater than $60,000.
+select e.Name, e.LastName, d.Name, d.budget
+from Employees e
+  inner join Departments d on d.code = e.Department and d.budget > 60000;
+  
 -- 2.13 Select the departments with a budget larger than the average budget of all the departments.
 -- 2.14 Select the names of departments with more than two employees.
 -- 2.15 Very Important - Select the name and last name of employees working for departments with second lowest budget.
