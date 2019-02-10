@@ -1,3 +1,4 @@
+```sql
 -- LINK : https://en.wikibooks.org/wiki/SQL_Exercises/Employee_management
 -- 2.1 Select the last name of all employees.
 select LastName from Employees;
@@ -36,3 +37,4 @@ select * from Employees where LastName like 'S%';
 -- 2.18 Reassign all employees from the Research department (code 77) to the IT department (code 14).
 -- 2.19 Delete from the table all employees in the IT department (code 14).
 -- 2.20 Delete from the table all employees who work in departments with a budget greater than or equal to $60,000.
+```
