@@ -6,12 +6,10 @@ select LastName from Employees;
 select distinct LastName from Employees;
 
 -- 2.3 Select all the data of employees whose last name is "Smith".
-select * from Employees
-where LastName = 'Smith';
+select * from Employees where LastName = 'Smith';
 
 -- 2.4 Select all the data of employees whose last name is "Smith" or "Doe".
-select * from Employees
-where LastName in ('Smith', 'Doe');
+select * from Employees where LastName in ('Smith', 'Doe');
 
 -- 2.5 Select all the data of employees that work in department 14.
 select * from Employees where Department = 14;
@@ -23,8 +21,18 @@ select * from Employees where Department in (37, 77);
 select * from Employees where LastName like 'S%';
 
 -- 2.8 Select the sum of all the departments' budgets.
+select SUM(Budget) from Departments;
+
 -- 2.9 Select the number of employees in each department (you only need to show the department code and the number of employees).
+select Department, count(SSN)
+from Employees
+group by Department;
+
 -- 2.10 Select all the data of employees, including each employee's department's data.
+select *
+from Employees e
+  inner join Departments d on d.code = e.Department;
+
 -- 2.11 Select the name and last name of each employee, along with the name and budget of the employee's department.
 -- 2.12 Select the name and last name of employees working for departments with a budget greater than $60,000.
 -- 2.13 Select the departments with a budget larger than the average budget of all the departments.
