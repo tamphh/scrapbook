@@ -31,11 +31,8 @@ SELECT Name
 FROM T
 WHERE Rnk=2;
 ```
-Simpler solution:
+### Find the nth highest salary in MySQL
 ```sql
-SELECT TOP 1 salary FROM (
-   SELECT TOP 2 salary 
-   FROM employees 
-   ORDER BY salary DESC) AS emp 
-ORDER BY salary ASC
+SELECT Salary FROM Employee 
+ORDER BY Salary DESC LIMIT n-1,1
 ```
