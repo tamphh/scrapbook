@@ -74,13 +74,43 @@ WHERE e.Department = (
        FROM (SELECT * FROM Departments d ORDER BY d.budget LIMIT 2) sub 
        ORDER BY budget DESC LIMIT 1);
        
--- 2.16  Add a new department called "Quality Assurance", with a budget of $40,000 and departmental code 11. 
--- And Add an employee called "Mary Moore" in that department, with SSN 847-21-9811.
+-- 2.16  Add a new department called "Quality Assurance", with a budget of $40,000 and departmental code 11.
+insert into Departments(Code, Name, Budget)
+  values(11, 'Quality Assurance', 40000);
+  -- And Add an employee called "Mary Moore" in that department, with SSN 847-21-9811.
+insert into Employees(Name, LastName, SSN, Department)
+  values('Mary', 'Moore', 847219811, 11);
 
 -- 2.17 Reduce the budget of all departments by 10%.
-
+update Departments
+  set Budget = Budget * 0.9;
+  
 -- 2.18 Reassign all employees from the Research department (code 77) to the IT department (code 14).
+update Employees
+  set Code=14
+  where Code = 77;
+-- with subquery(this solution is recommended because we could check which rows would be effected before execution.)
+update Employees
+  set Department=14
+  where Department in (
+      select tmpDepartment.Department from (Select * from Employees) as tmpDepartment where Department = 77
+  );
 
 -- 2.19 Delete from the table all employees in the IT department (code 14).
 
+-- with subquery(this solution is recommended because we could check which rows would be effected before execution.)
+delete from Employees
+  where Department in (
+      select tmpDepartment.Department from (Select * from Employees) as tmpDepartment where Department = 14
+  );
+
+delete from employees
+where department = 14;
+
 -- 2.20 Delete from the table all employees who work in departments with a budget greater than or equal to $60,000.
+delete from Employees
+  where Department in (
+    select d.Code
+      from (select * from Departments) as d
+      inner join (select * from Employees) as e on e.Department = d.Code and d.Budget >= 60000
+  );
