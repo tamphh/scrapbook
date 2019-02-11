@@ -43,6 +43,11 @@ from Employees e
   inner join Departments d on d.code = e.Department and d.budget > 60000;
   
 -- 2.13 Select the departments with a budget larger than the average budget of all the departments.
+select * from Departments
+  where Budget > (
+    select avg(Budget) from Departments
+  );
+  
 -- 2.14 Select the names of departments with more than two employees.
 -- 2.15 Very Important - Select the name and last name of employees working for departments with second lowest budget.
 -- 2.16  Add a new department called "Quality Assurance", with a budget of $40,000 and departmental code 11. 
