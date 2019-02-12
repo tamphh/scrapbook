@@ -41,8 +41,32 @@ select b.Code, w.Location
     on wt.code = w.code;
 
 --3.9 Select the codes of all warehouses that are saturated (a warehouse is saturated if the number of boxes in it is larger than the warehouse's capacity).
+select w.location, w.code, w.Capacity, wt.count
+  from Warehouses w
+    inner join
+      (
+        select Warehouse code, count(*) count
+            from Boxes
+          group by Warehouse
+      ) as wt
+    on wt.code = w.code and wt.count > w.Capacity
+where count is not null;
+
+select * from Warehouses w
+where Capacity < (
+  select count(*) from Boxes where Warehouse = w.Code
+);
 
 --3.10 Select the codes of all the boxes located in Chicago.
+select Code 
+  from Boxes
+  where Warehouse in (
+    select w.Code from Warehouses w where location='Chicago'
+  );
+
+select b.Code
+  from Boxes b
+  inner join Warehouses w on w.Code = b.Warehouse and w.Location = 'Chicago';
 
 --3.11 Create a new warehouse in New York with a capacity for 3 boxes.
 
