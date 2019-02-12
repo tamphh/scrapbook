@@ -69,14 +69,31 @@ select b.Code
   inner join Warehouses w on w.Code = b.Warehouse and w.Location = 'Chicago';
 
 --3.11 Create a new warehouse in New York with a capacity for 3 boxes.
+insert into Warehouses(Code, Location, Capacity)
+  values(7, 'New York', 3);
 
 --3.12 Create a new box, with code "H5RT", containing "Papers" with a value of $200, and located in warehouse 2.
+insert into Boxes(Code, Contents, Value, Warehouse)
+  values('H5RT', 'Papers', 200, 2);
 
 --3.13 Reduce the value of all boxes by 15%.
+update Boxes
+  set Value = Value * 0.85;
 
 --3.14 Remove all boxes with a value lower than $100.
+delete from Boxes where Code in
+  (
+    select tmp.Code from (select * from Boxes) tmp where tmp.Value < 100
+  );
 
 -- 3.15 Remove all boxes from saturated warehouses.
+delete from Boxes
+  where Warehouse in (
+    select Code from Warehouses w
+      where Capacity < (
+        select count(*) from (select * from Boxes) b where Warehouse = w.Code
+      )
+    );
 
 -- 3.16 Add Index for column "Warehouse" in table "boxes"
     -- !!!NOTE!!!: index should NOT be used on small tables in practice
