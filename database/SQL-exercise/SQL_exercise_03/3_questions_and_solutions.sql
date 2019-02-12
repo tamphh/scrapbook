@@ -30,6 +30,15 @@ select b.Code, w.Location
 
 --3.8 Select the warehouse codes, along with the number of boxes in each warehouse. 
     -- Optionally, take into account that some warehouses are empty (i.e., the box count should show up as zero, instead of omitting the warehouse from the result).
+ select w.location, w.code, coalesce(wt.count, 0) count 
+  from Warehouses w
+    left join
+      (
+        select Warehouse code, count(*) count
+            from Boxes
+          group by Warehouse
+      ) as wt
+    on wt.code = w.code;
 
 --3.9 Select the codes of all warehouses that are saturated (a warehouse is saturated if the number of boxes in it is larger than the warehouse's capacity).
 
