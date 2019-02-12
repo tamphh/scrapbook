@@ -35,7 +35,7 @@ select b.Code, w.Location
     left join
       (
         select Warehouse code, count(*) count
-            from Boxes
+          from Boxes
           group by Warehouse
       ) as wt
     on wt.code = w.code;
