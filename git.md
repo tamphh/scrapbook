@@ -89,3 +89,12 @@ git push -f origin master
 ```
 https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository?answertab=votes#tab-top
 https://digitaldrummerj.me/git-syncing-fork-with-original-repo/
+
+## Stop tracking and start ignoring
+```
+git rm --cached <file/directory name>
+# E.g. git rm --cached package.json
+```
+The ```--cached``` flag removes the files from the repository and leaves the local copies undisturbed. And the ```–r``` flag recursively removes the files inside the directory specified.
+
+Now that we removed the files from the repo, Git thinks that the local copies of the deleted files are something new we added to the repo. So adding these file names to the ```.gitignore``` file will tell git to ignore these files and they won’t be pushed again.
