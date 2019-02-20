@@ -36,3 +36,23 @@ WHERE Rnk=2;
 SELECT Salary FROM Employee 
 ORDER BY Salary DESC LIMIT n-1,1
 ```
+### How to get count of employees with total employee with group by year
+You need a running total using a user defined variable and a derived table cause running totals don't work with group by statement.
+
+```sql
+SET @SUM = 0;
+SELECT
+  YEAR,
+  NoOfEmployee,
+  (@SUM := @SUM + NoOfEmployee) AS Total
+FROM (
+  SELECT
+    YEAR(joindate) AS YEAR,
+    COUNT(*) AS NoOfEmployee
+  FROM
+    employees
+  GROUP BY
+    YEAR(joindate)
+  ) O
+```
+source: https://stackoverflow.com/questions/34063127/how-to-get-count-of-employees-with-total-employee-with-group-by-year?answertab=oldest#tab-top
