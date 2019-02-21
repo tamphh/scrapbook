@@ -1,4 +1,4 @@
-## Connect new repository to Bitbucket
+### Connect new repository to Bitbucket
 Get your local Git repository on Bitbucket
 
 Step 1: Switch to your repository's directory
@@ -21,13 +21,13 @@ git add sth # need to add sth new
 git push -u origin master
 ```
 
-## Remove a already pushed commit by resetting to commit #7f6d03
+### Remove a already pushed commit by resetting to commit #7f6d03
 ```bash
 git reset 7f6d03 --hard
 git push origin -f
 ```
 
-## Change branch name (stay on branch need to be renamed)
+### Change branch name (stay on branch need to be renamed)
   1. Rename your local branch.
   ```bash
   git branch -m new-name
@@ -41,7 +41,7 @@ git push origin -f
   git push origin -u new-name
   ```
   
-## Tag commands
+### Tag commands
 **Check if pushed tag is on the git remote**
   ```bash
   git ls-remote --tags origin
@@ -61,7 +61,7 @@ git push origin -f
   ```bash
   git push origin --tags
   ```
-## How to update forked repository
+### How to update forked repository
 
 1. Add the remote, call it "upstream":
 ```
@@ -90,7 +90,7 @@ git push -f origin master
 https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository?answertab=votes#tab-top
 https://digitaldrummerj.me/git-syncing-fork-with-original-repo/
 
-## Stop tracking and start ignoring
+### Stop tracking and start ignoring
 ```
 git rm --cached <file/directory name>
 # E.g. git rm --cached package.json
@@ -99,7 +99,7 @@ The ```--cached``` flag removes the files from the repository and leaves the loc
 
 Now that we removed the files from the repo, Git thinks that the local copies of the deleted files are something new we added to the repo. So adding these file names to the ```.gitignore``` file will tell git to ignore these files and they won’t be pushed again.
 
-## Show and filter branches
+### Show and filter branches
 #### &nbsp;&nbsp;&nbsp;&nbsp;Show all local branches without (master|staging|pre-production)
 ```sh
 git branch | grep -vE '(master|staging|pre-production)'
@@ -110,8 +110,13 @@ git branch | grep -vE '(master|staging|pre-production)'
 git branch | grep 'c4b' | grep -vE 'C4B-586'
 ```
 
-## Delete filtered branches
+### Delete filtered branches
 #### &nbsp;&nbsp;&nbsp;&nbsp;Delete all local branches without (master|staging|pre-production)
 ```sh
 git branch | grep -vE '(master|staging|pre-production)' | xargs git branch -D
+```
+
+### List branches and copy to clipboard
+```sh
+git branch | pbcopy
 ```
