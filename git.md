@@ -98,3 +98,20 @@ git rm --cached <file/directory name>
 The ```--cached``` flag removes the files from the repository and leaves the local copies undisturbed. And the ```–r``` flag recursively removes the files inside the directory specified.
 
 Now that we removed the files from the repo, Git thinks that the local copies of the deleted files are something new we added to the repo. So adding these file names to the ```.gitignore``` file will tell git to ignore these files and they won’t be pushed again.
+
+## Show and filter branches
+#### &nbsp;&nbsp;&nbsp;&nbsp;Show all local branches without (master|staging|pre-production)
+```sh
+git branch | grep -vE '(master|staging|pre-production)'
+```
+
+#### &nbsp;&nbsp;&nbsp;&nbsp;Get all local branches which contain 'c4b' and without 'C4B-586'
+```sh
+git branch | grep 'c4b' | grep -vE 'C4B-586'
+```
+
+## Delete filtered branches
+#### &nbsp;&nbsp;&nbsp;&nbsp;Delete all local branches without (master|staging|pre-production)
+```sh
+git branch | grep -vE '(master|staging|pre-production)' | xargs git branch -D
+```
