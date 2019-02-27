@@ -1,5 +1,5 @@
 # Includes
-```participant``` belongs to ```comment_thread``` which has one ```last_comment```, and polymorphic with ```source_type, source_id```
+```participant``` belongs to ```comment_thread``` which has one ```last_comment```, and polymorphic with ```source_type```, ```source_id```
 ```ruby
 def scope
   Participant
