@@ -94,6 +94,11 @@ validates_length_of :essay,
              # words). Defaults to ->(value) { value.split(//) }
              # which counts individual characters.
 ```
+### Uniqueness for multiple columns
+Validate the presence and uniqueness of combination of ```receiver_id``` & ```comment_thread_id``` columns.
+```ruby
+validates :receiver_id, presence: true, uniqueness: { scope: :comment_thread_id }
+```
 # Order
 ```ruby
 User.order(email: :desc)
