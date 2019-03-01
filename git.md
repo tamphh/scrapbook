@@ -120,3 +120,23 @@ git branch | grep -vE '(master|staging|pre-production)' | xargs git branch -D
 ```sh
 git branch | pbcopy
 ```
+# Commit - problem & solution
+### Combining the commits
+**To squash the last 3 commits into one:**
+```sh
+git reset --soft HEAD~3
+git commit -m "New message for the combined commit"
+```
+**Pushing the squashed commit**
+
+If the commits have been pushed to the remote:
+```sh
+git push origin +name-of-branch
+```
+The plus sign forces the remote branch to accept your rewritten history, otherwise you will end up with divergent branches
+
+If the commits have NOT yet been pushed to the remote:
+```sh
+git push origin name-of-branch
+```
+In other words, just a normal push like any other. Source: https://gist.github.com/patik/b8a9dc5cd356f9f6f980
