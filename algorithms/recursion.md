@@ -26,7 +26,7 @@ def recur(file_name)
   entries.each do |entry|
     dir = "#{file_name}/#{entry}"
 
-    puts entry if (File.file?(dir))
+    puts entry if File.file?(dir)
     
     recur(dir) if File.directory?(dir)
   end
