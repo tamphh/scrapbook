@@ -21,6 +21,7 @@ end
 
 #### 2. List all file names in a directory:
 ```ruby
+# In this sample, base case is the limit number of files & directories
 def recur(file_name)
   entries = Dir.entries(file_name) - %w[. ..]
   entries.each do |entry|
@@ -28,7 +29,7 @@ def recur(file_name)
 
     puts entry if File.file?(dir)
     
-    recur(dir) if File.directory?(dir)
+    recur(dir) if File.directory?(dir) # call itself with different input
   end
 end
 ```
