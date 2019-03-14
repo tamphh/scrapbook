@@ -11,9 +11,9 @@ Invoke the ```same function``` with ```different inputs``` until you reach the `
 #### 1. Count down:
 ```ruby
 def count_down(number)
+  return if number < 0 # Base Case
+  
   puts number
-
-  return if number == 0 # Base Case
   
   count_down(number - 1) # call itself with different input
 end
