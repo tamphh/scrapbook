@@ -28,9 +28,7 @@ def recur(file_name)
 
     puts entry if (File.file?(dir))
     
-    if(File.directory?(dir))
-      recur(dir)
-    end
+    recur(dir) if File.directory?(dir)
   end
 end
 ```
