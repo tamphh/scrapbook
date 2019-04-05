@@ -30,6 +30,53 @@ has_one :custom_form, -> { order('created_at DESC') }, class_name: CustomForm
 has_one :custom_form, -> { order(created_at: :desc) }, class_name: CustomForm
 # SELECT .... ORDER BY "custom_forms"."created_at" DESC LIMIT 1
 ```
+**Conditions passed with question mark interpolation**
+```ruby
+User.where("users.first_name = ? and users.last_name = ?", 'Oliver', 'Sykes')
+# SELECT "users".* FROM "users" WHERE (users.first_name = 'Oliver' and users.last_name = 'Sykes')
+# => [] # User::ActiveRecord_Relation 
+
+User.joins(:lessons).where("users.first_name = ? and lessons.title LIKE ?", 'Tomas', '%test%')
+# SELECT "users".* FROM "users" INNER JOIN "lessons" ON "lessons"."user_id" = "users"."id"  WHERE (users.first_name = 'Tomas' and lessons.title LIKE '%test%')
+# => [] # User::ActiveRecord_Relation
+```
+Remember **NEVER EVER** to do direct string interpolation with “#{}”!
+```ruby
+## DON'T !!!
+name = "I'm going to hack you;"
+User.where("users.first_name = '#{name}'") # NEVER DO THIS !!!
+```
+…this would open your App to [SQL injection Attack](http://guides.rubyonrails.org/security.html#sql-injection).
+
+**Merge different model scopes**
+Let say User can be accesed via a public uid
+```ruby
+class User < ActiveRecord::Base
+  has_many :articles
+  scope :for_public_uid, ->(uids) { where(id: uids) }
+end
+
+
+User.for_public_uid('abcd1234')
+# SELECT "users".* FROM "users" WHERE "users"."public_uid" = $1  [["public_uid", 'abcd1234']]
+=> #<ActiveRecord::Relation []>
+
+User.for_public_uid(['abcd1234', 'xyzff235'])
+# SELECT "users".* FROM "users" WHERE "users"."public_uid" IN ('abcd1234', 'xyzff235')
+=> #<ActiveRecord::Relation []>
+```
+Merge can be implemented on any scope returning “ActiveRecord::Relation”:
+```ruby
+class DocumentVersion
+  scope :order_by_latest, ->{ order("document_versions.id DESC") } 
+end
+
+class Document
+  scope :order_by_latest, ->{ joins(:document_versions).merge(DocumentVersion.order_by_latest) }
+end
+
+Document.order_by_latest
+
 **Complex scope example**
 ```ruby
 class Document
