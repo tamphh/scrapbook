@@ -15,3 +15,12 @@ Ex: find anything begin with ```qt@``` in ```/usr```
 cd /usr # 1. go to /usr
 find . -name qt@* # 2. find in /usr
 ```
+### Show top 5 most used commands
+
+```sh
+history | \
+awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | \
+grep -v "./" | \
+column -c3 -s " " -t | \
+sort -nr | nl |  head -n 5
+```
