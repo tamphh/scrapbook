@@ -3,3 +3,5 @@
 ```sh
 brew switch icu4c 62.1
 ```
+#### qt brew
+```/usr/local/opt/qt@5.5/.brew```
