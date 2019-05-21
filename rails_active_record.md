@@ -1,5 +1,5 @@
 # Includes
-```participant``` belongs to ```comment_thread``` which has one ```last_comment```, and polymorphic with ```source_type```, ```source_id```
+#### 1. ```participant``` belongs to ```comment_thread``` which has one ```last_comment```, and polymorphic with ```source_type```, ```source_id```
 ```ruby
 def scope
   Participant
@@ -7,6 +7,48 @@ def scope
     .joins(:comment_thread)
     .includes(comment_thread: [:last_comment, :source])
 end
+```
+#### 2. ```has_many``` associations need plural class name includes
+```ruby
+@libraries = Library.where(size: 'large').includes(:books)
+```
+#### 3. ```belongs_to / has_one``` associations need singular class name includes
+```ruby
+@books = Book.all.includes(:author)
+```
+#### 4. Load multiple associations with comma separation
+```ruby
+@library = Library.all.includes(:books, :magazines, :scrolls)
+```
+#### 5. Load 1-level deep nested associations as a hash
+```ruby
+@library = Library.all.includes( books: :author )
+```
+You might alternately see this with curly brace / hash rocket syntax:
+
+```ruby
+@library = Library.all.includes( :books => :author )
+```
+#### 6. Load 2+ level deep nested associations as a nested hash
+```ruby
+@library = Library.all.includes( books: [ author: :bio ] )
+```
+And with curly brace / hash rocket syntax:
+```ruby
+@library = Library.all.includes( :books => { :author => :bio } )
+```
+#### 7. Load complex associations with commas and nested hashes
+```ruby
+@library = Library.all.includes( { :books => :author }, :scrolls, :magazines )
+```
+All hashes all the way up there, but remember you don’t need curly braces if there is no nesting:
+```ruby
+@library = Library.all.includes( :books => :author, :scrolls => :scribe )
+```
+#### 8. Put includes right after the query conditions but before calculations and limits
+```ruby
+@libraries = Library.where(size: "large").includes(:books).limit(5)
+@authors = Author.where(genre: "History").includes(:books).limit(3)
 ```
 
 # Directly execute sql
