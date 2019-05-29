@@ -29,6 +29,14 @@ git add sth # need to add sth new
 git push -u origin master
 ```
 # 
+### How to use multiple github accounts with ssh keys on same computer
+I have two Github accounts: oanhnn (personal) and superman (for work). I want to use both accounts on same computer (without typing password everytime, when doing git push or pull).
+
+***Solution:***
+
+Use ssh keys and define host aliases in ssh config file (each alias for an account).
+
+Link: https://gist.github.com/oanhnn/80a89405ab9023894df7
 ### Remove a already pushed commit by resetting to commit #7f6d03
 ```bash
 git reset 7f6d03 --hard
