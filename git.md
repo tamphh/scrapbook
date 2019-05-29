@@ -1,3 +1,11 @@
+# Checkout/Connect new reposistory
+### Clone private github repository
+Private clone URLs take the form ```git@github.com:username/repo.git``` - perhaps you needed to use ```git@``` rather than ```git://?```
+
+```git://``` URLs are read only, and it looks like private repos do not allow this form of access.
+
+Ref: https://stackoverflow.com/questions/2505096/cloning-a-private-github-repo?answertab=votes#tab-top
+
 ### Connect new repository to Bitbucket
 Get your local Git repository on Bitbucket
 
@@ -20,7 +28,7 @@ git add sth # need to add sth new
 
 git push -u origin master
 ```
-
+# 
 ### Remove a already pushed commit by resetting to commit #7f6d03
 ```bash
 git reset 7f6d03 --hard
