@@ -57,6 +57,15 @@ ActiveRecord::Base.establish_connection
 ActiveRecord::Base.connection.execute('select * from ...')
 ```
 
+# Group
+Goal has many goal reviews. We could group goal reviews by goal for easier handling like this:
+
+```ruby
+GoalReview.where('(ended_at >= ? and ended_at <= ?)', from, to).group_by(:goal_id).each do |goal_id, goal_reviews|
+# goal -> [goal_review, goal_review, goal_review, ...]
+end
+```
+
 # Scopes and Arel tricks
 ```ruby
 scope :visible, where("hidden != ?", true)
