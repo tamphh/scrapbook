@@ -2,6 +2,10 @@
 ```sh
 kill -9 <p_id>
 ```
+### How to kill multiple PIDs with ```grep```, ```xargs```
+```sh
+ps auxww | grep application | grep processtobekilled | gawk '{print $2}' | grep -v grep | xargs kill -9
+```
 
 ### Get processess which are listening on port 3100
 ```sh
