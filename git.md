@@ -1,4 +1,4 @@
-# Checkout/Connect new reposistory
+## Checkout/Connect new reposistory
 ### Clone private github repository
 Private clone URLs take the form ```git@github.com:username/repo.git``` - perhaps you needed to use ```git@``` rather than ```git://?```
 
@@ -156,3 +156,20 @@ If the commits have NOT yet been pushed to the remote:
 git push origin name-of-branch
 ```
 In other words, just a normal push like any other. Source: https://gist.github.com/patik/b8a9dc5cd356f9f6f980
+
+# gitignore
+### Global git ignore
+Add to Global Git ignore Mac
+1. Create ```~/.gitignore_global``` file if not existed.
+```sh
+touch ~/.gitignore_global
+```
+2. Add .gitignore_global as the global gitignore file in your global git config
+```sh
+git config --global core.excludesfile ~/.gitignore_global
+```
+3. Update/Edit ignore items
+```sh
+vim ~/.gitignore_global
+```
+#
