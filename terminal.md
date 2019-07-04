@@ -28,3 +28,14 @@ grep -v "./" | \
 column -c3 -s " " -t | \
 sort -nr | nl |  head -n 5
 ```
+### Copy files with progress by ```rsync``` command
+Copy the directory itself:
+```sh
+# result: directory ~/foo contents will be copied in ~/foo@backup/foo
+rsync -av -P ~/foo ~/foo@backup
+```
+Copy the directory contents only:
+```sh
+# result: directory ~/foo contents will be copied in ~/foo@backup
+rsync -av -P ~/foo/ ~/foo@backup
+```
