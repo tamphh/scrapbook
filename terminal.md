@@ -39,3 +39,5 @@ Copy the directory contents only:
 # result: directory ~/foo contents will be copied in ~/foo@backup
 rsync -av -P ~/foo/ ~/foo@backup
 ```
+### Put anything to Mac menu status bar by sh
+https://getbitbar.com/plugins/Music/spotify.10s.sh
