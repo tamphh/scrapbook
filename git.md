@@ -136,6 +136,11 @@ git branch | grep -vE '(master|staging|pre-production)' | xargs git branch -D
 ```sh
 git branch | pbcopy
 ```
+### Check if branch name exists?
+```sh
+git rev-parse --verify --quiet <branch_name>
+```
+
 # Commit - problem & solution
 ### Combining the commits
 **To squash the last 3 commits into one:**
