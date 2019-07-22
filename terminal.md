@@ -41,3 +41,13 @@ rsync -av -P ~/foo/ ~/foo@backup
 ```
 ### Put anything to Mac menu status bar by sh
 https://getbitbar.com/plugins/Music/spotify.10s.sh
+
+### A quick way to save clipboard contents to a file 
+Overwrite:
+```sh
+pbpaste > somefile.txt
+```
+Append:
+```sh
+pbpaste >> somefile.txt
+```
