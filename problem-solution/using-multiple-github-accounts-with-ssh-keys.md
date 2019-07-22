@@ -66,4 +66,5 @@ Use ssh keys and define host aliases in ssh config file (each alias for an accou
    ```
 
 Done!
+
 Source: https://gist.github.com/oanhnn/80a89405ab9023894df7
