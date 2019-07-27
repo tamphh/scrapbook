@@ -178,14 +178,15 @@ git config --global core.excludesfile ~/.gitignore_global
 vim ~/.gitignore_global
 ```
 Sample:
-```sh
-tags
+```shtags
 gems
 *.svg
 tmp/
 *.cache
 *.json
+tps-main.js
 *.min.*
 *min.js
+.DS_Store
 ```
 #
