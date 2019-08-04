@@ -51,3 +51,17 @@ Append:
 ```sh
 pbpaste >> somefile.txt
 ```
+
+### Display All The Terminal Colors
+```sh
+for x in {0..8}; do 
+    for i in {30..37}; do 
+        for a in {40..47}; do 
+            echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "
+        done
+        echo
+    done
+done
+echo ""
+```
+source: https://til.hashrocket.com/posts/sfx6uu5qx5-display-all-the-terminal-colors
