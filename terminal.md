@@ -52,6 +52,23 @@ Append:
 pbpaste >> somefile.txt
 ```
 
+
+### Keep system awake by ```caffeinate```
+Keep your computer awake for 1 hour:
+```sh
+caffeinate -t 3600
+```
+Keep your computer from idling until a Terminal command finishes
+```sh
+caffeinate -i long_running_script.sh
+```
+- ```-i``` prevents “idle sleeping.”
+- ```-d``` just prevents the display from sleeping
+- ```-m``` just prevents disks from sleeping when idle
+- ```-s``` keeps the whole system awake
+
+Source: https://brettterpstra.com/2014/02/20/quick-tip-caffeinate-your-terminal/
+
 ### Display All The Terminal Colors
 ```sh
 for x in {0..8}; do 
