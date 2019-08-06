@@ -67,6 +67,12 @@ caffeinate -i long_running_script.sh
 - ```-m``` just prevents disks from sleeping when idle
 - ```-s``` keeps the whole system awake
 
+Wake up your computer
+```sh
+caffeinate -u -t 1
+```
+```-u``` replicates user activity. It causes the same reaction as moving a mouse or hitting a key after your Mac sleeps. Without a ```-t``` argument to set a timeout, it’s supposed to default to 5 seconds, but it seems to hang around a lot longer than that on my system. A single second of user activity is all it takes to wake a machine.
+
 Source: https://brettterpstra.com/2014/02/20/quick-tip-caffeinate-your-terminal/
 
 ### Display All The Terminal Colors
