@@ -56,3 +56,11 @@ FROM (
   ) O
 ```
 source: https://stackoverflow.com/questions/34063127/how-to-get-count-of-employees-with-total-employee-with-group-by-year?answertab=oldest#tab-top
+
+### How to get count of employees with total employee with group by year
+Order results by id and put the one with ```id=7412``` to top.
+```sql
+select * 
+  from goals
+  order by id = 7412 desc, id desc;
+```
