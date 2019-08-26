@@ -88,3 +88,9 @@ done
 echo ""
 ```
 source: https://til.hashrocket.com/posts/sfx6uu5qx5-display-all-the-terminal-colors
+
+### Find top 10 largest files in /var directory (subdirectories and hidden files included )
+```sh
+tree -ihafF /var | tr '[]' ' '| sort -k1hr|head -10
+```
+source: https://www.commandlinefu.com/commands/view/24512/find-top-10-largest-files-in-var-directory-subdirectories-and-hidden-files-included-
