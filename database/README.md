@@ -64,3 +64,9 @@ select *
   from goals
   order by id = 7412 desc, id desc;
 ```
+
+### Table 'performance_schema.session_variables' doesn't exist error
+```sh
+mysql_upgrade -u root -p
+service mysql restart
+```
