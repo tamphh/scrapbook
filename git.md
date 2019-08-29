@@ -178,7 +178,9 @@ git config --global core.excludesfile ~/.gitignore_global
 vim ~/.gitignore_global
 ```
 Sample:
-```shtags
+```sh
+tags
+tags.temp
 gems
 *.svg
 tmp/
@@ -188,6 +190,7 @@ tps-main.js
 *.min.*
 *min.js
 .DS_Store
+
 ```
 #
 
