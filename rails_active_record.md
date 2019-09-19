@@ -140,6 +140,12 @@ class Document
 end
 # it can get kinda complex :)
 ```
+**Do this on rails console to list models with their structure ..**
+
+```ruby
+Rails.application.eager_load! (required on development environment)
+ActiveRecord::Base.descendants
+```
 
 # Find duplicate email records with Rails
 Rails + SQL do the heavy lifting
