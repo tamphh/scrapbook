@@ -162,7 +162,7 @@ git push origin name-of-branch
 ```
 In other words, just a normal push like any other. Source: https://gist.github.com/patik/b8a9dc5cd356f9f6f980
 
-# gitignore
+# gitignore & exclude
 ### Global git ignore
 Add to Global Git ignore Mac
 1. Create ```~/.gitignore_global``` file if not existed.
@@ -190,6 +190,23 @@ tps-main.js
 *.min.*
 *min.js
 .DS_Store
+
+```
+### Exclude locally
+In Git, you can exclude a file locally - i.e. only on the current computer.
+
+Inside the ```.git``` folder for your project, there is a file ```/info/exclude```. This file has the exact same structure as a  ```.gitignore``` file, so you can add the file patterns for any files which must be excluded locally, inside that file.
+for example, I want to exclude ```.rubycop.yml``` locally: 
+in path: ```.git/info/exclude```
+```
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# *~
+# exclude .rubocop.yml
+.rubocop.yml
 
 ```
 #
