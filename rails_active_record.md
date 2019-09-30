@@ -176,6 +176,12 @@ receiver_id, cheers_count = cheers.group(:receiver_id).count.max_by { |(_receive
 Source
 - http://www.rubycuts.com/developer-resources/ruby-enumerable-module/max_by-method/
 
+#### Counting associations
+Counting association seems to be a problematic part quite often. Let’s assume that each user can have many comments. Our goal is to show comments count for each user:
+```ruby
+User.joins(:comments).group("users.name").count("comments.id")
+```
+
 # Validations
 ```ruby
 :name, presence: true, uniqueness: { case_sensitive: true }
