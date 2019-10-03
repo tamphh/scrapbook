@@ -43,6 +43,13 @@ git reset 7f6d03 --hard
 git push origin -f
 ```
 
+### Reset develop branch to master
+```bash
+git checkout develop
+git reset --hard master
+git push --force origin develop
+```
+
 ### Change branch name (stay on branch need to be renamed)
   1. Rename your local branch.
   ```bash
