@@ -216,6 +216,7 @@ in path: ```.git/info/exclude```
 .rubocop.yml
 
 ```
+source: https://www.jerriepelser.com/blog/exlude-git-files-locally/
 #
 
 ## Git log
