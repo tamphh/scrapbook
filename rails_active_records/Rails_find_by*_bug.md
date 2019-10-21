@@ -26,46 +26,61 @@ I wrote:
 curl -XPOST -d'{"value": 1}' -H'Content-Type: application/json' url
 ```
 
-Now I’ve successfully passed an Integer instead of a String. Eek! Most of the time this results in confusing NoMethodErrors which are pretty harmless, but imagine that I did this instead:
+Now I’ve successfully passed an ```Integer``` instead of a ```String```. Eek! Most of the time this results in confusing ```NoMethodErrors``` which are pretty harmless, but imagine that I did this instead:
 
+```sh
 curl -XPOST -d'{"value": []}' -H'Content-Type: application/json' url
+```
 
-Now I’ve passed an array somewhere the application is expecting a string. In the case of a bare call to a dynamic finder, what happens?
+Now I’ve passed an array somewhere the application is expecting a string. In the case of a bare call to a dynamic finder, **what happens?**
 
+```ruby
 User.find_by_email(['john1', 'john2'])
 
 # SELECT  "users".* FROM "users" WHERE "users"."email" IN ('john1', 'john2') LIMIT 1
+```
+
 Uh oh! Also on the surface seems pretty benign - BUT, I can (without being affected by normal rate limits) perform:
 
-Denial of service against the application database, or
-Scan large swaths of emails in a single operation. Consider contrived example: User.find_by_email_and_password(params[:email], params[:password]) which will return the first user with the password in the given email set
-You may be saying: “I use strong_parameters!” While good (keep it up!), most developers are using strong_parameters where protecting fields that will be used to update a model, and not sanitizing fields in controller actions. Most rails apps include things like Model.find_by_id(params[:id]) which does not run through strong_parameters.
+- Denial of service against the application database, or
+- Scan large swaths of emails in a single operation. Consider contrived example: User.find_by_email_and_password(params[:email], params[:password]) which will return the first user with the password in the given email set
+You may be saying: “I use ```strong_parameters```!” While good (keep it up!), most developers are using strong_parameters where protecting fields that will be used to update a model, and not sanitizing fields in controller actions. Most rails apps include things like ```Model.find_by_id(params[:id])``` which does not run through ```strong_parameters```.
 
 Okay, one more:
 
+```sh
 curl -XPOST -d'{"value": {"other": 1}}' -H'Content-Type: application/json' url
+```
 
-The same dynamic finder run against the above will take a Hash in when the application is expecting a String. What does rails do in that case? You might be surprised!
+The same dynamic finder run against the above will take a ```Hash``` in when the application is expecting a ```String```. What does rails do in that case? You might be surprised!
 
+```sh
 SQLite3::SQLException: no such column: email.other:
 SELECT  "users".* FROM "users" WHERE "email"."other" = '1' LIMIT 1
+```
 Now we’ve done it. While we haven’t broken out of the prepared statement world and can’t perform a real injection here - this should be pretty concerning for two edge cases.
 
-A table with a column named the same as the table (pluralized model name):
+- A table with a column named the same as the table (pluralized model name):
+```ruby
 params = {users: {any_column: 'any_value'} }; User.find_by_users(params)
-A table with a column named the same as a join:
+```
+- A table with a column named the same as a join:
+```ruby
 params = {other: {any_column: 'any_value'}}; User.joins(:other).where(params)
+```
 My point isn’t as much that these would happen, as that this is something you wouldn’t expect or know about. It relies on the fact that Rails is being cutesy with multi-use methods.
 
-This last issue has actually been brought up on the rubyonrails-security Google group before as an advisory, but it was stated that:
+This last issue has actually been brought up on the ```rubyonrails-security``` Google group before as an advisory, but it was stated that:
 
-Unfortunately it is not possible to implement a reliable fix for this risk without breaking applications which rely on related functionality to build their queries. Future releases of Rails will be able to address this, however that functionality will need to be built in the open and have a long beta period to flush out unanticipated edge cases.
+> *Unfortunately it is not possible to implement a reliable fix for this risk without breaking applications which rely on related functionality to build their queries. Future releases of Rails will be able to address this, however that functionality will need to be built in the open and have a long beta period to flush out unanticipated edge cases.*
 
 I’d love to look more into why that’s the case - but assuming it is, everyone should know that these issues are present even in modern Rails. So how do we avoid them?
 
-The most straightforward protection you can offer yourself is to ensure that your params are of the type that you expect them to be. For the most part, that means to_s as they come in.
+The most straightforward protection you can offer yourself is to ensure that your params are of the type that you expect them to be. For the most part, that means ```to_s``` as they come in.
 
+```ruby
 User.find_by_email(params[:email].to_s)
+```
 In conclusion, we get a lot from Rails and frameworks of this type (and I’m really, really thankful for that as I’ve pretty much built my career on these things), but sometimes abstractions that are too overloaded can be unintentionally dangerous.
 
 source: http://seejohncode.com/2017/04/12/rails-find-by-issue/
