@@ -1,4 +1,6 @@
 ## Database notes around SQL, queries, core concepts,...
+### Awesome blog:
+- https://blog.jooq.org/sql/
 ### Disabling ONLY_FULL_GROUP_BY
 
 If you are upgrading your database server and want to avoid any possible breaks you can disable by removing it from your ```sql_mode```.
