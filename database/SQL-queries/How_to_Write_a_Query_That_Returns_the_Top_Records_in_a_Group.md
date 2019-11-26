@@ -53,7 +53,7 @@ Since our goal is to rank the orders by month
 I’m creating a temporary MySQL variable called ```@current_month``` that will keep track of each month. 
 On every change of month we reset the ```@order_rank``` variable to one, otherwise we increment by one.
 
-**Note** using the := operand allows us to create a variable on the fly without requiring the SET command.
+**Note** using the ```:= operand``` allows us to create a variable on the fly without requiring the SET command.
 
 **2nd Note** keep in mind this SELECT statement will rank all of the records in our table. 
 Normally you’d want to have a WHERE clause that limits the size of the result set. 
