@@ -197,6 +197,7 @@ tps-main.js
 *.min.*
 *min.js
 .DS_Store
+.keep
 
 ```
 ### Exclude locally
