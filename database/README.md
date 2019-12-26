@@ -56,6 +56,7 @@ FROM (
   GROUP BY
     YEAR(joindate)
   ) O
+  JOIN (SELECT @SUM:=0) r
 ```
 source: https://stackoverflow.com/questions/34063127/how-to-get-count-of-employees-with-total-employee-with-group-by-year?answertab=oldest#tab-top
 
