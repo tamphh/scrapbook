@@ -2,7 +2,7 @@ There're some features which contain multiple questions with drag/drop support. 
 
 ## User-specified ordering with fractions
 
-Basically, the idea is that we’ll somehow to find a solution that hit DB at least as possible while doing re-order. For example, we move item at 5th position to 2nd one. If somehow we could get some value between 2 & 3 and update that one to position of moving item then we finish the work. The point is how to get new position value efficiently. Using floats and picking the midpoints between adjacent values also runs out of space rapidly. So far as we research, we could use value from [Stern–Brocot tree](https://en.wikipedia.org/wiki/Stern%E2%80%93Brocot_tree). It provides a mediant number between 2 ones and renumbering values is only rarely required.
+Basically, the idea is that we’ll somehow to find a solution that hit DB records at least as possible while re-ordering. For example, we move item at 5th position to 2nd one. If somehow we could get some value between 2 & 3 and update that one to position of moving item then we finish the work. The point is how to get new position value efficiently. Using floats and picking the midpoints between adjacent values also runs out of space rapidly. So far as we research, we could use value from [Stern–Brocot tree](https://en.wikipedia.org/wiki/Stern%E2%80%93Brocot_tree). It provides a mediant number between 2 ones and renumbering values is only rarely required.
 
 ### Draft implementation:	
 #### 1. Database design: 
@@ -25,7 +25,7 @@ CREATE TABLE tasks (
 | 2  | task 2 | 3         | 1           |
 | 3  | task 3 | 4         | 1           |
 
-We need to move ```task 3``` to position between 1st & 2nd, from [Stern–Brocot tree](https://en.wikipedia.org/wiki/Stern%E2%80%93Brocot_tree), the mediant value for 2/1 & 3/1 is 5/2, them update record, we'll end with:
+We need to move ```task 3``` to position between 1st & 2nd, from [Stern–Brocot tree](https://en.wikipedia.org/wiki/Stern%E2%80%93Brocot_tree), the mediant value for 2/1 & 3/1 is 5/2, then update record, we'll finish with:
 
 | id | name   | numerator | denominator |
 |----|--------|-----------|-------------|
