@@ -81,7 +81,7 @@ To help you understand our approach and how to apply in some edge cases, we use:
 
 - Default initialized values for numerator = nth_position * 10 (eg: 10, 20, 30,…) and always > 1
 
-- Default initialized values for numerator = 1
+- Default initialized values for denominator = 1
 
 - In case of moving record to the first position, we’ll implicitly use numerator = 1, denominator = 1 as the higher limit, and current first record as lower limit
 
