@@ -33,7 +33,7 @@ rake db:migrate:down VERSION=20100905201547
 
 Note that this will NOT rollback any interceding migrations -- only the one listed. If that is not what you intended, you can safely run rake db:migrate and it will re-run only that one, skipping any others that were not previously rolled back.
 
-And if you ever want to migrate a single migration out of order, there is also its inverse db:migrate:up:
+And if you ever want to migrate a single migration out of order, there is also its inverse ```db:migrate:up```:
 
 ```sh
 rake db:migrate:up VERSION=20100905201547
