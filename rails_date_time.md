@@ -20,3 +20,4 @@ t.strftime("%y")  => "17"      # year without century of the time
 t.strftime("%Z")  => "UTC"     # Time Zone of the time
 t.strftime("%p")  => "PM"      # AM / PM of the time
 ```
+Ref: https://apidock.com/ruby/DateTime/strftime
