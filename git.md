@@ -169,6 +169,18 @@ git push origin name-of-branch
 ```
 In other words, just a normal push like any other. Source: https://gist.github.com/patik/b8a9dc5cd356f9f6f980
 
+### Removing an entire commit
+I call this operation "cherry-pit" since it is the inverse of a "cherry-pick". You must first identify the SHA of the commit you wish to remove. You can do this using gitk --date-order or using git log --graph --decorate --oneline You are looking for the 40 character SHA-1 hash ID (or the 7 character abbreviation). Yes, if you know the "^" or "~" shortcuts you may use those.
+
+```sh
+git rebase -p --onto SHA^ SHA
+```
+
+Obviously replace "SHA" with the reference you want to get rid of. The "^" in that command is literal.
+
+However, please be warned. If some of the commits between SHA and the tip of your branch are merge commits, it is possible that git rebase -p will be unable to properly recreate them. Please inspect the resulting merge topology gitk --date-order HEAD ORIG_HEAD and contents to ensure that git did want you wanted. If it did not, there is not really any automated recourse. You can reset back to the commit before the SHA you want to get rid of, and then cherry-pick the normal commits and manually re-merge the "bad" merges. Or you can just suffer with the inappropriate topology (perhaps creating fake merges git merge --ours otherbranch so that subsequent development work on those branches will be properly merged in with the correct merge-base).
+Ref: https://sethrobertson.github.io/GitFixUm/fixup.html
+
 # gitignore & exclude
 ### Global git ignore
 Add to Global Git ignore Mac
