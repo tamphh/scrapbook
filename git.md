@@ -173,7 +173,8 @@ In other words, just a normal push like any other. Source: https://gist.github.c
 I call this operation "cherry-pit" since it is the inverse of a "cherry-pick". You must first identify the SHA of the commit you wish to remove. You can do this using gitk --date-order or using git log --graph --decorate --oneline You are looking for the 40 character SHA-1 hash ID (or the 7 character abbreviation). Yes, if you know the "^" or "~" shortcuts you may use those.
 
 ```sh
-git rebase -p --onto SHA^ SHA
+git rebase -p --onto SHA~1 SHA
+# example: git rebase -p --onto 32996deaa929aacee4abef8598a96f281463ebd6~1 32996deaa929aacee4abef8598a96f281463ebd6
 ```
 
 Obviously replace "SHA" with the reference you want to get rid of. The "^" in that command is literal.
