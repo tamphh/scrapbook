@@ -21,3 +21,18 @@ t.strftime("%Z")  => "UTC"     # Time Zone of the time
 t.strftime("%p")  => "PM"      # AM / PM of the time
 ```
 Ref: https://apidock.com/ruby/DateTime/strftime
+
+## Strptime: parse a string into a DateTime object. Controlled.
+
+Just as you can format a string from a Time object with ```Time#strftime```, you can also parse a string in a defined format into a ```DateTime``` or ```Date``` object, using ```DateTime#strptime``` or ```Date#strptime``` respectively (```Date#strptime``` only creates a date without the time, though).
+
+```ruby
+require 'date'
+
+parsed_time = DateTime.strptime('03/05/2010 14:25:00', '%d/%m/%Y %H:%M:%S')
+
+parsed_time.to_s
+=> "2010-05-03T14:25:00+00:00"
+```
+
+See the docs for more info: DateTime#strptime and Date#strptime.
