@@ -98,3 +98,14 @@ Completed 200 OK in 12835ms (Views: 12810.0ms | ActiveRecord: 0.0ms)
 => #<Rack::Test::CookieJar:0x0000556ee95c33e0 @default_host="www.example.com", @cookies=[#<Rack::Test::Cookie:0x0000556eeb72b2d0 @default_host="www.example.com", ...
 ```
 Ref: https://medium.com/better-programming/rails-console-magic-tricks-da1fdd657d32
+
+### Print class content
+```ruby
+file_path, line = SomeConstant.method(:some_method_name).source_location
+
+# puts 10 lines start from the method define
+puts IO.readlines(file_path)[line-1, 10].join('')
+
+# puts all content of SomeConstant class
+puts IO.readlines(file_path).join('')
+```
