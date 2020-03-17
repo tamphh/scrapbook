@@ -182,6 +182,10 @@ Counting association seems to be a problematic part quite often. Let’s assume 
 User.joins(:comments).group("users.name").count("comments.id")
 ```
 
+#### ```count``` vs ```size```
+For ex: ```article.responses.size```
+Although ```#count``` sounds like the more intuitive choice for counting the number of responses, this example uses ```#size```, as ```#count``` will **always do a COUNT query**, while ```#size``` will skip the query if the responses are already loaded.
+
 # Validations
 ```ruby
 :name, presence: true, uniqueness: { case_sensitive: true }
