@@ -109,3 +109,12 @@ puts IO.readlines(file_path)[line-1, 10].join('')
 # puts all content of SomeConstant class
 puts IO.readlines(file_path).join('')
 ```
+
+### Benchmark your code
+Controller is too slow? Model is too slow? Query is too slow? Rails comes with Benchmark.ms that allows you to evaluate the time taken to execute a block of code.
+```ruby
+time = Benchmark.ms{ Post.all }
+puts time
+```
+You can use Benchmark.ms with your code within the braces to evaluate the time taken for execution.
+Ref:https://www.airpair.com/ruby-on-rails/posts/ruby-rails-tips-hacks
