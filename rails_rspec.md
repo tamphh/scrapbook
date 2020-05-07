@@ -53,4 +53,6 @@ RSpec.describe WelcomeNotificationCreator do
   end
 end
 ```
-source: https://engineering.gusto.com/the-rails-callbacks-best-practices-used-at-gusto/
+source: 
+- https://engineering.gusto.com/the-rails-callbacks-best-practices-used-at-gusto/
+- https://mytrile.github.io/blog/2013/03/28/testing-after-commit-in-rspec/
