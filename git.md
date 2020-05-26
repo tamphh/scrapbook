@@ -1,4 +1,3 @@
-## Checkout/Connect new reposistory
 ### Clone private github repository
 Private clone URLs take the form ```git@github.com:username/repo.git``` - perhaps you needed to use ```git@``` rather than ```git://?```
 
@@ -133,10 +132,15 @@ git branch | grep -vE '(master|staging|pre-production)'
 git branch | grep 'c4b' | grep -vE 'C4B-586'
 ```
 
-### Delete filtered branches
+### Remove filtered branches
 #### &nbsp;&nbsp;&nbsp;&nbsp;Delete all local branches without (master|staging|pre-production)
 ```sh
 git branch | grep -vE '(master|staging|pre-production)' | xargs git branch -D
+```
+
+### Remove merged branches
+```sh
+git branch --merged | grep -v ‘*’ | xargs -n 1 git branch -d
 ```
 
 ### List branches and copy to clipboard
