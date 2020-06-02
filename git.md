@@ -152,6 +152,11 @@ git branch | pbcopy
 git rev-parse --verify --quiet <branch_name>
 ```
 
+### Check what changed in some period
+```sh
+git whatchanged --since='2 weeks ago'
+```
+
 # Commit - problem & solution
 ### Combining the commits
 **To squash the last 3 commits into one:**
