@@ -138,9 +138,9 @@ git branch | grep 'c4b' | grep -vE 'C4B-586'
 git branch | grep -vE '(master|staging|pre-production)' | xargs git branch -D
 ```
 
-### Remove merged branches
+### Remove merged branches without (master|staging|pre-production)
 ```sh
-git branch --merged | grep -v ‘*’ | xargs -n 1 git branch -d
+git branch --merged | egrep -v 'master|staging|pre-production' | xargs -n 1 git branch -d
 ```
 
 ### List branches and copy to clipboard
@@ -155,6 +155,14 @@ git rev-parse --verify --quiet <branch_name>
 ### Check what changed in some period
 ```sh
 git whatchanged --since='2 weeks ago'
+```
+
+### List all changes to a specific file, even if it’s been renamed
+This is a super handy trick. With this command, you can see all of the commits that have touched a file.
+Because git is awesome, it will show you the changes to that file even if the name has been changed at some point in its history.
+source: https://www.jh.codes/10-more-git-tricks/
+```sh
+git log --follow -p -- <file_path>
 ```
 
 # Commit - problem & solution
