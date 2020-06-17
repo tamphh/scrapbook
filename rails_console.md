@@ -99,6 +99,12 @@ Completed 200 OK in 12835ms (Views: 12810.0ms | ActiveRecord: 0.0ms)
 ```
 Ref: https://medium.com/better-programming/rails-console-magic-tricks-da1fdd657d32
 
+### Sidekiq
+#### Clear all Sidekiq data
+```ruby
+Sidekiq.redis { |r| puts r.flushall }
+```
+
 ### Print class content
 ```ruby
 file_path, line = SomeConstant.method(:some_method_name).source_location
