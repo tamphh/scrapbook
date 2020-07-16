@@ -38,8 +38,18 @@ And if you ever want to migrate a single migration out of order, there is also i
 ```sh
 rake db:migrate:up VERSION=20100905201547
 ```
-### Remove index
+#### Remove index
 For ex: ```ArgumentError: Index name 'index_responses_on_survey_id_and_survey_template_id' on table 'responses' already exists```
 ```ruby
 ActiveRecord::Migration.remove_index 'responses', name: 'index_responses_on_survey_id_and_survey_template_id'
+```
+
+#### Re-create test DB
+```ruby
+bundle exec rake db:drop RAILS_ENV=test
+bundle exec rake db:create RAILS_ENV=test
+bundle exec rake db:schema:load RAILS_ENV=test
+
+# Short syntax
+bundle exec rake db:drop db:create db:schema:load RAILS_ENV=test
 ```
