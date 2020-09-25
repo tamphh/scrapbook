@@ -1,4 +1,4 @@
-INSERTing 50,000 records into a database in ActiveRecord, Arel, SQL, activerecord-import and Sequel.
+## INSERTing 50,000 records into a database in ActiveRecord, Arel, SQL, activerecord-import and Sequel.
 ### 1-activerecord
 ```ruby
 require "active_record"
@@ -142,3 +142,4 @@ DB[:records].multi_insert(data)
 
 # Takes 2 seconds (like the SQL and activerecord-import versions), and it's a simple one-liner.
 ```
+source: https://gist.github.com/janko/d76a138cf4cc1d1ecaab
