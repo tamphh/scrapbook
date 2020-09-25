@@ -42,7 +42,8 @@ data.each do |hash|
  insert          = Arel::Nodes::InsertStatement.new
  insert.relation = Arel::Table.new(:records)
  insert.columns  = hash.keys.map { |k| Arel::Table.new(:records)[k] }
- insert.values   = Arel::Nodes::Values.new(hash.values, insert.columns)
+ # insert.values   = Arel::Nodes::Values.new(hash.values, insert.columns)
+ insert.values   = Arel::Nodes::ValuesList.new([record.values])
 
  ActiveRecord::Base.connection.execute(insert.to_sql)
 end
