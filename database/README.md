@@ -68,6 +68,34 @@ select *
   order by id = 7412 desc, id desc;
 ```
 
+### ```EXISTS``` clause
+- What kind of store is present in one or more cities?
+```sql
+SELECT DISTINCT store_type FROM stores
+  WHERE EXISTS (SELECT * FROM cities_stores
+                WHERE cities_stores.store_type = stores.store_type);
+```
+
+- What kind of store is present in no cities?
+```sql
+SELECT DISTINCT store_type FROM stores
+  WHERE NOT EXISTS (SELECT * FROM cities_stores
+                    WHERE cities_stores.store_type = stores.store_type);
+```
+
+- What kind of store is present in all cities?
+```sql
+SELECT DISTINCT store_type FROM stores s1
+  WHERE NOT EXISTS (
+    SELECT * FROM cities WHERE NOT EXISTS (
+      SELECT * FROM cities_stores
+       WHERE cities_stores.city = cities.city
+       AND cities_stores.store_type = stores.store_type));
+```
+The last example is a double-nested NOT EXISTS query. That is, it has a NOT EXISTS clause within a NOT EXISTS clause. Formally, it answers the question “does a city exist with a store that is not in Stores”? But it is easier to say that a nested NOT EXISTS answers the question “is x TRUE for all y?”
+
+source: https://dev.mysql.com/doc/refman/8.0/en/exists-and-not-exists-subqueries.html
+
 ### Table 'performance_schema.session_variables' doesn't exist error
 ```sh
 mysql_upgrade -u root -p
