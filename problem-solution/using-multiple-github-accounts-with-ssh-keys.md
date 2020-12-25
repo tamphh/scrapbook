@@ -68,3 +68,5 @@ Use ssh keys and define host aliases in ssh config file (each alias for an accou
 Done!
 
 Source: https://gist.github.com/oanhnn/80a89405ab9023894df7
+
+Further reading: [How to manage multiple GitHub accounts on your local machine](https://dev.to/codetraveling/how-to-manage-multiple-github-accounts-on-your-local-machine-3gj0)
