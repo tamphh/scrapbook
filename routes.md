@@ -3,10 +3,10 @@ To be sure you haven’t completely destroyed any endpoints on your app, check y
 
 ```sh
 git checkout master
-rake routes | cat > routes_before.txt
+rake routes | sort | cat > routes_before.txt
 
 git checkout route_split
-rake routes | cat > routes_after.txt
+rake routes | sort | cat > routes_after.txt
 
 diff -u routes_before.txt routes_after.txt
 #or diff -w routes_before.txt routes_after.txt
