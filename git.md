@@ -199,6 +199,12 @@ Obviously replace "SHA" with the reference you want to get rid of. The "^" in th
 However, please be warned. If some of the commits between SHA and the tip of your branch are merge commits, it is possible that git rebase -p will be unable to properly recreate them. Please inspect the resulting merge topology gitk --date-order HEAD ORIG_HEAD and contents to ensure that git did want you wanted. If it did not, there is not really any automated recourse. You can reset back to the commit before the SHA you want to get rid of, and then cherry-pick the normal commits and manually re-merge the "bad" merges. Or you can just suffer with the inappropriate topology (perhaps creating fake merges git merge --ours otherbranch so that subsequent development work on those branches will be properly merged in with the correct merge-base).
 Ref: https://sethrobertson.github.io/GitFixUm/fixup.html
 
+# Git config file
+### Edit global config:
+```sh
+git config --global --edit
+```
+
 # gitignore & exclude
 ### Global git ignore
 Add to Global Git ignore Mac
