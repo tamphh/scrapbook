@@ -199,6 +199,21 @@ Obviously replace "SHA" with the reference you want to get rid of. The "^" in th
 However, please be warned. If some of the commits between SHA and the tip of your branch are merge commits, it is possible that git rebase -p will be unable to properly recreate them. Please inspect the resulting merge topology gitk --date-order HEAD ORIG_HEAD and contents to ensure that git did want you wanted. If it did not, there is not really any automated recourse. You can reset back to the commit before the SHA you want to get rid of, and then cherry-pick the normal commits and manually re-merge the "bad" merges. Or you can just suffer with the inappropriate topology (perhaps creating fake merges git merge --ours otherbranch so that subsequent development work on those branches will be properly merged in with the correct merge-base).
 Ref: https://sethrobertson.github.io/GitFixUm/fixup.html
 
+### How to Undo/Revert a Pushed Merge
+```sh
+$ git revert -m 1 <merge-commit-hash>
+```
+
+**From**: https://www.git-tower.com/learn/git/faq/undo-git-merge/
+```markdown
+Let's take a closer look at what this command will do:
+
+1. git revert will make sure that a new commit is created to revert the effects of that unwanted merge. This is in contrast to git reset, where we effectively "remove" a commit from the history. That's also the reason why git revert is a better solution in cases where you've already pushed to a remote.
+2. The -m 1 option tells Git that we want to keep the parent side of the merge (which is the branch we had merged into).
+3. Finally, also make sure to provide the correct commit hash: for the git reset example above, we had to provide the commit before the merge; when using git revert, however, we have to specify the actual merge commit's hash.
+```
+More details: https://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch?answertab=active#tab-top
+
 # Git config file
 ### Edit global config:
 ```sh
