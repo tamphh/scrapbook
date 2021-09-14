@@ -101,3 +101,27 @@ source: https://dev.mysql.com/doc/refman/8.0/en/exists-and-not-exists-subqueries
 mysql_upgrade -u root -p
 service mysql restart
 ```
+
+### How to get surveys which has only one text question
+- We need to get surveys with only one question and its question type is text
+- ```GROUP_CONCAT(questions. `type`) IS NOT NULL``` could be replaced with ```GROUP_CONCAT(questions. `type`) = 'Question::TextQuestion'```
+
+```sql
+SELECT
+  MAX(survey_question_scores.survey_id) AS sent_survey_id,
+  COUNT(*),
+  GROUP_CONCAT(survey_question_scores.question_id),
+  GROUP_CONCAT(questions. `type`)
+FROM
+  `survey_question_scores`
+  LEFT JOIN `surveys` ON `surveys`.`id` = `survey_question_scores`.`survey_id`
+  LEFT JOIN `questions` ON `questions`.`id` = `survey_question_scores`.`question_id`
+    AND `questions`.`type` = 'Question::TextQuestion'
+WHERE
+  `surveys`.`organization_id` = 40857
+GROUP BY
+  survey_question_scores.survey_id
+HAVING
+  COUNT(*) = 1
+  AND GROUP_CONCAT(questions. `type`) IS NOT NULL;
+```
