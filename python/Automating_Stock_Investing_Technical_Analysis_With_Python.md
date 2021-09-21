@@ -239,3 +239,5 @@ class TestTechnicalIndicator(TestCase):
 ```
 
 Run the code and it will produce the following results:
+![1*Pi2lBCCxbCCdWrhTSoeJSQ](https://user-images.githubusercontent.com/12711066/134187826-9888422b-64ea-43a3-94b1-b67e9fdaec25.png)
+
