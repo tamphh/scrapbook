@@ -71,7 +71,6 @@ from ta.momentum import RSIIndicator
 
 import numpy as np
 import pandas
-from ta.volatility import BollingerBands
 
 class Company:
     def __init__(self, symbol):
