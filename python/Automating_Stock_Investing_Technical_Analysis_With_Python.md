@@ -79,7 +79,7 @@ class Company:
         self.prices = None
 
 
-def generate_buy_sell_signals(condition_buy, condition_sell, dataframe, strategy):
+def generate_buy_sell_signals(condition_buy, condition_sell, dataframe):
     last_signal = None
     indicators = []
     buy = []
@@ -102,10 +102,10 @@ def generate_buy_sell_signals(condition_buy, condition_sell, dataframe, strategy
             buy.append(np.nan)
             sell.append(np.nan)
 
-    dataframe[f'{strategy}_Last_Signal'] = np.array(last_signal)
-    dataframe[f'{strategy}_Indicator'] = np.array(indicators)
-    dataframe[f'{strategy}_Buy'] = np.array(buy)
-    dataframe[f'{strategy}_Sell'] = np.array(sell)
+    dataframe['RSI_Last_Signal'] = np.array(last_signal)
+    dataframe['RSI_Indicator'] = np.array(indicators)
+    dataframe['RSI_Buy'] = np.array(buy)
+    dataframe['RSI_Sell'] = np.array(sell)
 
 
 
@@ -130,7 +130,7 @@ def get_rsi(config, company):
     generate_buy_sell_signals(
         lambda x, dataframe: dataframe['RSI'].values[x] < low_rsi,
         lambda x, dataframe: dataframe['RSI'].values[x] > high_rsi,
-    dataframe, 'RSI')
+    dataframe)
 
     return dataframe
 ```
@@ -146,16 +146,16 @@ import numpy as np
 
 
 class TechnicalIndicatorsChartPlotter:
-    def plot_price_and_signals(self, fig, company, data, strategy, axs):
-        last_signal_val = data[f'{strategy}_Last_Signal'].values[-1]
+    def plot_price_and_signals(self, fig, company, data, axs):
+        last_signal_val = data['RSI_Last_Signal'].values[-1]
         last_signal = 'Unknown' if not last_signal_val else last_signal_val
-        title = f'Close Price Buy/Sell Signals using {strategy}.  Last Signal: {last_signal}'
-        fig.suptitle(f'Top: {company.symbol} Stock Price. Bottom: {strategy}')
+        title = f'Close Price Buy/Sell Signals using RSI.  Last Signal: {last_signal}'
+        fig.suptitle(f'Top: {company.symbol} Stock Price. Bottom: RSI')
 
-        if not data[f'{strategy}_Buy'].isnull().all():
-            axs[0].scatter(data.index, data[f'{strategy}_Buy'], color='green', label='Buy Signal', marker='^', alpha=1)
-        if not data[f'{strategy}_Sell'].isnull().all():
-            axs[0].scatter(data.index, data[f'{strategy}_Sell'], color='red', label='Sell Signal', marker='v', alpha=1)
+        if not data['RSI_Buy'].isnull().all():
+            axs[0].scatter(data.index, data['RSI_Buy'], color='green', label='Buy Signal', marker='^', alpha=1)
+        if not data['RSI_Sell'].isnull().all():
+            axs[0].scatter(data.index, data['RSI_Sell'], color='red', label='Sell Signal', marker='v', alpha=1)
         axs[0].plot(company.prices, label='Close Price', color='blue', alpha=0.35)
 
         plt.xticks(rotation=45)
@@ -174,7 +174,7 @@ class TechnicalIndicatorsChartPlotter:
 
         #plt.style.use('default')
         fig, axs = plt.subplots(2, sharex=True, figsize=(13, 9))
-        self.plot_price_and_signals(fig, company, rsi, 'RSI', axs)
+        self.plot_price_and_signals(fig, company, rsi, axs)
         axs[1].fill_between(rsi.index, y1=low_rsi, y2=high_rsi, color='#adccff', alpha=0.3)
         axs[1].plot(rsi['RSI'], label='RSI', color='blue', alpha=0.35)
         axs[1].legend(loc='upper left')
