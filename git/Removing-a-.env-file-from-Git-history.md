@@ -16,8 +16,7 @@ In my case, I added the following to the ```.gitignore```.
 .env
 ```
 Let's try and push that to see what happens.
-
-![RI8Em9uCt](https://user-images.githubusercontent.com/12711066/147387743-609653c1-e5a6-43ff-9633-59ec1c6952c3.jpeg)
+![RI8Em9uCt](https://user-images.githubusercontent.com/12711066/147387860-db5ed77d-377a-4a3a-95b9-8c853de0d26b.jpeg)
 
 Gitignore doesn't work on existing files
 
