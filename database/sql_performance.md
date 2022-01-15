@@ -30,7 +30,7 @@ khi một câu **query** của mọi người bị chậm thì rất khó có th
 
 Theo mình tìm hiểu thì các **SQL** database thường sẽ tổ chức **index** dưới 2 dạng:
 - **B-tree** : Dựa theo kiến trúc của cây cân bằng. Hỗ trợ đa dạng query hơn.
-- **Hash** : Dựa theo cấu trúc dữ liệu **Hash-Table**. Dạng này sẽ hỗ trợ dạng `=` rất tốt nhưng lại không hỗ trợ dạng `range query (>,<,>=,<=)`
+- **Hash** : Dựa theo cấu trúc dữ liệu **Hash-Table**. Dạng này sẽ hỗ trợ dạng `=` rất tốt nhưng lại không hỗ trợ dạng `range query (>,<,>=,<=)` 
 
 **Hash** ít được dùng hiện nay và mình cũng chưa từng sử dụng nó trong **project** thực tế nên bài này mình chỉ nói đến 
 dạng **B-tree**.
@@ -38,12 +38,13 @@ dạng **B-tree**.
 Các hình ảnh dưới đây mình lấy từ [SQL Performance explained](https://www.amazon.com/Performance-Explained-Everything-Developers-about/dp/3950307826).
 Mọi người mua sách ủng hộ tác giả nhé. Quyển sách rất hay dạy chúng ta mọi thứ liên quan đến **index**.
 
+![Hbkb70eBe](https://user-images.githubusercontent.com/12711066/149625253-fe44bc7d-8419-4aa5-9848-767f9fcd743a.jpeg)
 
 ### Index data structure
 Để hiểu được **index** chúng ta cần phải biết được cấu trúc dữ liệu của một **index**. Giả sử ta tạo một index trên **column 2** dạng số.
 **Database** sẽ tạo ra một dạng cấu trúc dữ liệu **B-tree** dựa theo các dữ liệu có trong **column 2** và các dữ liệu này sẽ được **sắp xếp** như hình bên dưới.
  
-![B-tree-data-struct](blog-picture/b-tree-architechture.PNG "index")
+
 
 #### Leaf Nodes
 Trong hình bên trên chúng ta sẽ chú ý đến các **Leaf Nodes** các **Node** này sẽ cung cấp cho chúng ta **địa chỉ** để đọc dữ liệu từ bảng được lưu
@@ -52,7 +53,7 @@ trong cơ sở dữ liệu.
 Tất nhiên sẽ có các **Leaf Nodes** không được các **Branch Node** trỏ tới nên các **Leaf Node** nãy sẽ được liên kết với nhau bằng **danh sách liên kết đôi** 
 để đảm bảo được việc duyệt dữ liệu trong cây **index**.
 
-![Leaf-Node](blog-picture/Leaf_node.PNG "Leaf-Node")
+![uzBI2A0KC](https://user-images.githubusercontent.com/12711066/149625268-95c2859a-8271-45f1-882c-15788524968c.jpeg)
 
 #### Index Traversal
 Tiếp đến chúng ta sẽ xem xét đến cách duyệt dữ liệu trên **index** để biết được tại sao nó lại nhanh hơn với việc **scan** table rất nhiều. 
@@ -62,7 +63,8 @@ cho đến khi đến đầu của **Leaf Nodes**. Tiếp tục duyệt theo qua
 
 Vì cây **index** đã được sắp xếp nên việc duyệt này sẽ rất nhanh và phụ thuộc vào **độ sâu của cây** và số lượng dữ liệu có trong 1 **Node** (vài **KB** và không đổi).
 
-![B-Tree-Traversal](blog-picture/B_Tree_Travel.PNG "Traversal")
+![aYJlYDZeK](https://user-images.githubusercontent.com/12711066/149625291-6bbde80a-93e5-4dd8-8c46-a02882e70463.jpeg)
+
 
 Với các thuật toán phát triển cây **index** thì cây **index** sẽ được gọi là **đứa trẻ còi cọc** so với độ phát triền của các **Leaf Nodes** vì vậy duyệt
 cây **index** cho chúng ta tốc độ nhanh hơn **scan** table. 
@@ -73,7 +75,7 @@ Theo ví dụ bên trên thì một **Branch Node** sẽ chứa 4 giá trị v�
 
 Ta có bảng dữ liệu sau để thấy rõ hơn độ lớn của cây sẽ phát triển chậm như thế nào nếu mỗi **Branch Node** có 4 phần tử.
 
-![B-Tree-depth](blog-picture/index_depth.PNG "depth")
+![D6673qZ2Wy](https://user-images.githubusercontent.com/12711066/149625320-19afb7f6-4c24-4419-a181-a41f086eec13.jpeg)
 
 ### Create Index for optimise query
 Chúng ta đã hiểu **index** là gì và tại sao khi sử dụng **index** lại cho chúng ta kết quả tốt hơn. Việc tiếp theo là áp 
@@ -106,7 +108,7 @@ xếp dữ liệu theo theo trường đứng đầu trước sau đó sẽ sắ
 
 Vậy nên việc chọn thứ tự các trường trong **index** dạng này là rất quan trọng ảnh hưởng trực tiếp đến hiệu năng của **index**.
 
-![concat-index](blog-picture/concat-index.PNG "concat-index")
+![gw-v8hsrg](https://user-images.githubusercontent.com/12711066/149625342-fc5b9910-2b51-498c-8cc7-f62add38affb.jpeg)
 
 Lời khuyên của mình cũng như sách mình đọc và nghiên cứu thì hãy chọn trường có **selective** nhất đứng đầu tiên. Vì các trường
 đó có tính **chọn lọc cao** (**selective**) thì khi tạo cây **index** sẽ có độ sâu thấp hơn. Điều này đúng cho các loại
@@ -228,7 +230,7 @@ CREATE INDEX sales_emp ON sales (subsidiary_id, employee_id);
 
 Chúng ta sẽ có **query plan** sau :
 
-![query-plan](blog-picture/Nested-Join.PNG "query-plan")
+![-WN8GNDql](https://user-images.githubusercontent.com/12711066/149625390-5eb1122d-1117-4648-8677-82b39ca5c522.jpeg)
 
 Ở đây ta thấy **Database** đã sử dụng cả 2 **index** để thực hiện phép **join** sẽ nhanh hơn.
 - **emp_up_name** để **access** và **filter** trường **last_name**
@@ -304,14 +306,14 @@ SELECT *
 ```
 Ta sẽ có **query plan** cho query này:
 
-![hash-join-filter](blog-picture/Hash-Join_Filter.PNG "hash-join-filter")
+![ymB24htZJ](https://user-images.githubusercontent.com/12711066/149625410-cf10df41-0d8a-47bb-b48e-4a66d4494e67.jpeg)
 
 **Database** sẽ load hết dữ liệu 1 bảng vào **hash-table** trước như ở đây ta thấy nó sẽ load bảng **employees** vì nó có kích thước nhỏ hơn.
 Với dạng **Join** này chúng ta chỉ cần đánh **index** tại **where** vì khi thực hiện **join** nó đã sử dụng **hash-table** nên việc **index** cho 
 trường cần **join** là **không cần thiết.**
 
 Ta tạo **index** sau và sẽ có một **query plan** :
-![hash-join](blog-picture/Hash_join.PNG "hash-join")
+![xQdXmKU2E](https://user-images.githubusercontent.com/12711066/149625420-af9c7467-9451-4caa-918c-a015cbfc38c2.jpeg)
 
 Vậy việc biết được **database** bạn đang sử dụng đang sử dụng **join algorithms** nào là điều rất cần thiết để biết được cách nâng cao hiệu năng của 
 phép **join**. 
@@ -354,12 +356,12 @@ Với **Mysql** version **5.7** thì bạn làm ơn đừng sử dụng câu **q
  SELECT film_id FROM sakila.film_actor WHERE actor_id = 1);
 ```
 Vì nếu bạn mong muốn **Mysql 5.7** se thực hiện **sub query** trong lệnh **IN** trước thì nó làm ngược lại đó. Hãy nhìn cách nó làm
-![mysql-5.7-in](blog-picture/mysql_in_5.7.PNG "mysql-5.7-in")
+![9q_owY-4s](https://user-images.githubusercontent.com/12711066/149625445-57947ed2-e2b1-4c15-aed9-be4159abef49.jpeg)
 
 Nó sẽ quét hết bảng `film` trước sau đó với thực hiện so sánh với **sub query**. Nếu dùng **Mysql 5.7** thì bạn nên thay đổi nếu có 
 **query** dạng này sang dạng **join**. Đến phiên bản **Mysql 8** thì điều này đã được cải tiến nó sẽ thực hiện câu **sub query** trước.
 
-![mysql-8-in](blog-picture/mysql-8-in.PNG "mysql-8-in")
+![k49JZYhfo](https://user-images.githubusercontent.com/12711066/149625450-2a57f033-2630-4166-b565-d9bdd07dcb00.jpeg)
 
 ## Chopping Up a Query
 Kỹ thuật này mình dùng nhiều trong quá trình **xóa** dữ liệu với các bảng không có **partition** theo **range**.
