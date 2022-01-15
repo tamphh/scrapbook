@@ -125,4 +125,6 @@ HAVING
   COUNT(*) = 1
   AND GROUP_CONCAT(questions. `type`) IS NOT NULL;
 ```
-source: https://github.com/trandem/blog/blob/main/sql-note.md
+source: 
+- https://github.com/trandem/blog/blob/main/sql-note.md
+- https://demtv.hashnode.dev/sql-performance
