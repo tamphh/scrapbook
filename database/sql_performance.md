@@ -551,4 +551,7 @@ kiến thức của các bạn mình cũng đã bị nhiều bài **tutorial** t
 
 Bài này là rất dài hy vọng các bạn có thể đọc hết và **vote** một sao trên **github** để ủng hộ mình nếu có ích cho các bạn.
 
+source: 
+- https://github.com/trandem/blog/blob/main/sql-note.md
+- https://demtv.hashnode.dev/sql-performance
 
