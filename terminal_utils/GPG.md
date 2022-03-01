@@ -1,4 +1,5 @@
 # Encrypt/Decrypt With GPG
+```brew install gnupg``` if needed
 
 ### Encrypt/Decrypt file without keys
 ```sh
