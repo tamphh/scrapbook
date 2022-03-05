@@ -17,6 +17,11 @@ class BaseDiscount
     @successor = successor
   end
 
+  def next_handler(successor)
+  	@successor = successor
+  	successor
+  end
+
   def call(customer)
     return successor.call(customer) unless applicable?(customer)
 
@@ -66,8 +71,13 @@ class DefaultDiscount < BaseDiscount
 end
 
 chain = BlackFridayDiscount.new(LoyalCustomerDiscount.new(DefaultDiscount.new))
-chain.call(Customer.new(6))
+bfd.call(Customer.new(6))
 
+# or (recommended)
+
+bfd = BlackFridayDiscount.new
+bfd.next_handler(LoyalCustomerDiscount.new).next_handler(DefaultDiscount.new)
+bfd.call(Customer.new(6))
 ```
 
 ### Ref
