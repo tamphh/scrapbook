@@ -71,9 +71,9 @@ class DefaultDiscount < BaseDiscount
 end
 
 chain = BlackFridayDiscount.new(LoyalCustomerDiscount.new(DefaultDiscount.new))
-bfd.call(Customer.new(6))
+chain.call(Customer.new(6))
 
-# or (recommended)
+# or (recommended), BlackFridayDiscount as root chain
 
 bfd = BlackFridayDiscount.new
 bfd.next_handler(LoyalCustomerDiscount.new).next_handler(DefaultDiscount.new)
