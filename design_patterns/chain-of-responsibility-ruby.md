@@ -38,7 +38,6 @@ class BlackFridayDiscount < BaseDiscount
     0.3
   end
 
-
   def applicable?(customer)
     false
   end
