@@ -125,3 +125,25 @@ HAVING
   COUNT(*) = 1
   AND GROUP_CONCAT(questions. `type`) IS NOT NULL;
 ```
+
+### How to get wrong combinations of (category, sub_category)
+```sql
+SELECT
+	tc.category_id,
+	qc.name,
+	tc.sub_category_id,
+	qsc.name sub_name,
+	GROUP_CONCAT(qsc2.name) sub_names
+FROM
+	thematic_categories tc
+	INNER JOIN question_categories qc ON qc.id = tc.category_id
+	INNER JOIN question_sub_categories qsc ON qsc.id = tc.sub_category_id
+	INNER JOIN question_sub_categories qsc2 ON qsc2.question_category_id = qc.id
+GROUP BY
+	tc.category_id,
+	qc.name,
+	tc.sub_category_id,
+	qsc.name
+HAVING
+	sub_names NOT LIKE CONCAT('%', sub_name, '%');
+```
