@@ -56,7 +56,7 @@ on Orders.CustomerID = Customers.CustomerID
 ```
 
 ## 4. Don’t Use Distinct: 
-The Distinct clause is used to find the distinct rows corresponding to the selected columns by dropping the duplicate rows. The `Distinct` clause is a time-consuming operation in SQL and the alternative is to use `group by`. For example, the below queries find the count of orders from the order details table:
+The `Distinct` clause is used to find the distinct rows corresponding to the selected columns by dropping the duplicate rows. The `Distinct` clause is a time-consuming operation in SQL and the alternative is to use `group by`. For example, the below queries find the count of orders from the order details table:
 ```sql
 # Expensive operation - count distinct order ids - using distinct 
 SELECT count(distinct OrderID)
