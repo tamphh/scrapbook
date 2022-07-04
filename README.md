@@ -85,6 +85,7 @@ module AdminQueryInterface
 end
 ```
 ### Sample for many to many through relationship:
+Ref: https://riptutorial.com/ruby-on-rails/topic/1087/activerecord-migrations
 ```ruby
 class Physician < ApplicationRecord
   has_many :appointments
