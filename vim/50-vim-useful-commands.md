@@ -1,4 +1,4 @@
-Here are 50 useful Vim commands that work in normal mode. Many of these can be combined and modified to produce dozens more. Use these as inspiration for your own repeatable workflows. In no particular order:
+## Here are 50 useful Vim commands that work in normal mode. Many of these can be combined and modified to produce dozens more. Use these as inspiration for your own repeatable workflows. In no particular order:
 
 - `gg` Move to the first line of the file
 - `G` Move to the last line
@@ -50,3 +50,5 @@ Here are 50 useful Vim commands that work in normal mode. Many of these can be c
 - `&` Repeat last substitution on current line
 - `g&` Repeat last substitution on all lines
 - `ZZ` Save the current file and close it
+
+Ref: https://vimtricks.com/p/50-useful-vim-commands/
