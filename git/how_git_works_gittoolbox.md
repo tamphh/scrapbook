@@ -1,5 +1,4 @@
 # My muscle-memory git toolbox
-source: https://quuxplusone.github.io/blog/2023/10/30/git-toolbox/?ref=dailydev
 
 [](https://quuxplusone.github.io/blog/2023/10/30/git-toolbox/?ref=dailydev#this-blog-post-has-been-on-my-to)This blog post has been on my to-do list ever since I saw Daniel Stenberg’s blog post [“This is how I git”](https://daniel.haxx.se/blog/2020/11/09/this-is-how-i-git/) (November 2020). I thought, “I should do one of those posts, too!”
 
@@ -290,7 +289,7 @@ $ git commit -a --amend -m "My original commit, formatted"
 ```
 
 ___
-
+source: https://quuxplusone.github.io/blog/2023/10/30/git-toolbox
 [](https://quuxplusone.github.io/blog/2023/10/30/git-toolbox/?ref=dailydev#see-also)See also:
 
 -   [“How to Write a Git Commit Message”](https://cbea.ms/git-commit/) (Chris Beams, August 2014)
