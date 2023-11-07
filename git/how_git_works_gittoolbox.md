@@ -289,8 +289,8 @@ $ git commit -a --amend -m "My original commit, formatted"
 ```
 
 ___
-source: https://quuxplusone.github.io/blog/2023/10/30/git-toolbox
-[](https://quuxplusone.github.io/blog/2023/10/30/git-toolbox/?ref=dailydev#see-also)See also:
-
+See also:
 -   [“How to Write a Git Commit Message”](https://cbea.ms/git-commit/) (Chris Beams, August 2014)
 -   [“git: fetch and merge, don’t pull”](https://longair.net/blog/2009/04/16/git-fetch-and-merge/) (Mark Longair, April 2009)
+
+source: https://quuxplusone.github.io/blog/2023/10/30/git-toolbox
