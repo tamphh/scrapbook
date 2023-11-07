@@ -289,8 +289,3 @@ If you want to dive deeper into working with Git, I have an [article](https://bl
 If you've reached this point, thanks for reading, I'm [Faisal](https://www.freecodecamp.org/news/p/e2f11707-3a1c-4a8e-9520-8c443204353b/links.albasfaisal.com). You can check me out on Twitter, Instagram, and YouTube. Feel free to connect in any of those platforms.
 
 source: https://www.freecodecamp.org/news/git-under-the-hood
-___
-
-___
-
-Learn to code for free. freeCodeCamp's open source curriculum has helped more than 40,000 people get jobs as developers. [Get started](https://www.freecodecamp.org/learn/)
