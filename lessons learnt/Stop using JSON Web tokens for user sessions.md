@@ -26,3 +26,5 @@ The “attack chain” is depicted in the following diagram and operates as foll
 ![XSS_with_JWTs_2](https://github.com/tamphh/scrapbook/assets/12711066/c51484f7-a5d9-4aab-a9e2-9225d100edee)
 
 We have seen this vulnerability numeros times in security assessments. In my opinion single-page application have a serious design issue when they use JWTs for authentification. This attack would not be possible with a cookie based session mechanisn where attributes like `HttpOnly` would prevents injected JavaScript Code from accessing the JWTs.
+
+source: https://ds-security.com/post/stop-using-jwts-for-sessions/
