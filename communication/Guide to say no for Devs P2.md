@@ -156,3 +156,5 @@ Your Caring Techie
 ## **Additional reads**
 https://www.thecaringtechie.com/p/why-learning-to-disagree-can-be-a
 https://www.thecaringtechie.com/p/how-to-disagree-at-work-without-rubbing
+
+source: https://www.thecaringtechie.com/p/software-eng-guide-to-saying-no
