@@ -26,8 +26,8 @@ Standard is your default mode unless specified otherwise.
 
 This mode launches a new instance of an activity in the task. This mode can create multiple instances of the same activity, and these can be assigned to the same or separate tasks.
 
-```
-<span id="ed00" data-selectable-paragraph=""><span>&lt;<span>activity</span> <span>android:launchMode</span>=<span>"standard"</span>&gt;</span></span>
+```xml
+<activity android:launchMode="standard">
 ```
 
 Let’s say you have 4 different activities, A, B, C and D and they were launched in order:
@@ -42,8 +42,8 @@ In this mode, if you launch activity B again the order will be:
 
 This mode differs from the standard mode where singleTop will not create a new activity if the said activity is **already in the stack** and is **on the top the stack.**
 
-```
-<span id="1932" data-selectable-paragraph=""><span>&lt;<span>activity</span> <span>android:launchMode</span>=<span>"singleTop"</span>&gt;</span></span>
+```xml
+<activity android:launchMode="singleTop">
 ```
 
 Let’s say you have 4 different activities, A, B, C and D and they were launched in order:
@@ -62,8 +62,8 @@ But consider the scenario where you were to launch activity B:
 
 This mode differs from the singleTop mode where singleTask will destroy any activity on top of the said activity, provided the activity is **already in the stack.**
 
-```
-<span id="f15b" data-selectable-paragraph=""><span>&lt;<span>activity</span> <span>android:launchMode</span>=<span>"singleTask"</span>&gt;</span></span>
+```xml
+<activity android:launchMode="singleTask">
 ```
 
 Let’s say you have 4 different activities, A, B, C and D and they were launched in order:
@@ -82,8 +82,8 @@ But consider the scenario where you were to launch activity B after creating act
 
 This mode is similar to singleTask mode, but the major difference is that the activity is launched in a new task and this task cannot have any other activities.
 
-```
-<span id="57c7" data-selectable-paragraph=""><span>&lt;<span>activity</span> <span>android:launchMode</span>=<span>"singleInstance"</span>&gt;</span></span>
+```xml
+<activity android:launchMode="singleInstance">
 ```
 
 Let’s say you have 4 different activities, A, B, C and D and they were launched in order:
@@ -110,7 +110,7 @@ But what about creating a new activity E, which we’ll assume isn’t on single
 
 ## SingleInstancePerTask Mode
 
-This mode is similar to singleInstance mode, but the only difference is that muliple instances of the activity can be created in different tasks.
+This mode is similar to `singleInstance` mode, but the only difference is that muliple instances of the activity can be created in different tasks.
 
 ## Conclusion
 
