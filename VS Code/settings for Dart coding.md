@@ -16,7 +16,7 @@
     // setting is global and not configurable per-language.
     "debug.openDebug": "openOnDebugBreak",
 
-      // source: https://dartcode.org/docs/recommended-settings/
+    // source: https://dartcode.org/docs/recommended-settings/
     // By default, VS Code will only switch to the Debug Console when you start
     // debugging the first time in a session. This setting tells VS Code to always
     // switch to the Debug Console when starting a session, so you can see the
