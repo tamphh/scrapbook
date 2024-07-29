@@ -8,7 +8,7 @@ In this post I will not explain what is the difference between a `Widget` and a 
 
 ## Some context
 
-Last week I was fed up with adding gaps between my widgets in some `Columns` and `Rows`. I use `SizedBoxes` for that, but we need to specify the width or the height depending on whether we are inside a `Column` or a `Row`. I don’t find this very productive so I ended up creating my own `RenderObject` for that. I called the underlaying widget `**Gap**`!
+Last week I was fed up with adding gaps between my widgets in some `Columns` and `Rows`. I use `SizedBoxes` for that, but we need to specify the width or the height depending on whether we are inside a `Column` or a `Row`. I don’t find this very productive so I ended up creating my own `RenderObject` for that. I called the underlaying widget **Gap**!
 
 _Fun fact_ 🙃_: Three days after I started to work on this widget, I saw this tweet in my TL:_
 
