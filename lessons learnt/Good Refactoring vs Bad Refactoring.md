@@ -295,7 +295,8 @@ export default function ProductList({ products }) {
       ...
     </div>
   );
-}```
+}
+```
 
 This Next.js-based approach provides server-side rendering out of the box, which is crucial for SEO. It also offers a better user experience with faster initial page loads and improved performance for users with slower connections. Remix would be equally good for this purpose, offering similar benefits for server-side rendering and SEO optimization.
 
