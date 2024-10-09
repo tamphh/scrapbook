@@ -57,8 +57,14 @@ Use ssh keys and define host aliases in ssh config file (each alias for an accou
    Hi superman! You've successfully authenticated, but GitHub does not provide shell access.
    ```
 
-5. Now all are set, just clone your repositories
-
+5. Now all are set, just clone your repositories:
+   
+   For default github account:
+   ```shell
+   $ git clone git@github.com:org1/project1.git /path/to/project1
+   ```
+   
+   For extra superman github account:
    ```shell
    $ git clone git@github-superman:org2/project2.git /path/to/project2
    $ cd /path/to/project2
