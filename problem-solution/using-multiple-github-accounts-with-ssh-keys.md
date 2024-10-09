@@ -180,6 +180,25 @@ That’s it!
 
 # Reference
 
+Sample git config for multi accounts:
+```sh
+# Default github account
+Host github.com
+   HostName github.com
+   AddKeysToAgent yes
+   UseKeychain yes
+   IdentityFile ~/.ssh/id_rsa
+   IdentitiesOnly yes
+
+# Thanos github account: thanos
+Host github.com_thanos
+   HostName github.com
+   AddKeysToAgent yes
+   UseKeychain yes
+   IdentityFile ~/.ssh/id_rsa_thanos
+   IdentitiesOnly yes
+```
+
 Source: https://gist.github.com/oanhnn/80a89405ab9023894df7
 
 Further reading: [How to manage multiple GitHub accounts on your local machine](https://dev.to/codetraveling/how-to-manage-multiple-github-accounts-on-your-local-machine-3gj0)
