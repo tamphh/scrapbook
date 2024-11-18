@@ -299,3 +299,7 @@ Same effect can be achieved with other DI frameworks. Try some and post your res
 ActivityLifecycleCallbacks is an underrated, powerful tool. Try one of [these examples](https://github.com/yandex-money/android-activitylifecyclecallbacks-example), and let them help you in your projects the same way they help Yandex.Money make our apps better.
 
 source: https://medium.com/yoomoney-eng/activitylifecyclecallbacks-a-blind-spot-in-public-api-6ea522fbf546
+
+## Refs:
+- https://pahlevikun.medium.com/automatically-listening-to-all-of-your-activity-lifecycle-event-with-activitylifecyclecallbacks-261b8ecadd50
+
